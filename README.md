@@ -9,9 +9,12 @@ The repository contains two products:
 - an **admin dashboard** that lets the site owner manage every piece of
   portfolio content without touching the source code.
 
-> **Status:** the project foundation (Phase 1) and the database layer (Phase 2)
-> are complete --- 13 tables, migrations applied and seeded with real content.
-> The public sections and the admin dashboard follow ---
+> **Status:** the project foundation (Phase 1), the database layer (Phase 2),
+> authentication (Phase 3) and the public portfolio (Phase 5) are complete ---
+> 13 tables migrated and seeded, and a bilingual, RTL-aware public site with all
+> six content pages, a working contact form and generated SEO routes. The admin
+> dashboard (Phase 4) has its shell, navigation and read-only overview but not
+> yet its CRUD screens ---
 > see [Project Status](#project-status) below.
 
 ---
@@ -78,22 +81,42 @@ The repository contains two products:
 
 ```bash
 npm install
-cp .env.example .env.local     # set DATABASE_URL to your MySQL instance
+cp .env.example .env           # set DATABASE_URL to your MySQL instance
 mysql -u root -p -e "CREATE DATABASE portfolio_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+
+# Generate a real signing secret --- the placeholder in .env.example will not work.
+node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+
 npm run db:generate            # build the Prisma client
 npm run db:migrate             # create the tables
-npm run db:seed                # load the CV content
-npm run db:reset-password -- rozny@yahoo.com "YourPassword"
+npm run db:seed                # load the CV content + create the admin user
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000). The root URL redirects to
 your best-matching locale, so you will land on `/en` or `/ar` automatically.
 
+The dashboard lives at **`/admin`** and is English-only. Sign in with
+`ADMIN_EMAIL` / `ADMIN_PASSWORD` from `.env`. To change the password later:
+
+```bash
+npm run db:reset-password -- rozny@yahoo.com "YourNewPassword"
+```
+
+`db:seed` only sets the password when it _creates_ the user, so re-seeding will
+never reset a password you have since changed.
+
 ### Environment variables
 
-Copy `.env.example` to `.env.local` and fill it in. The full list is documented
-in the [project specification](./portfolio-project-README.md#32-environment-variables).
+Copy `.env.example` to `.env` and fill it in. The full list is documented in the
+[project specification](./portfolio-project-README.md#32-environment-variables).
+
+Two values must be changed before anything works:
+
+| Variable                              | Why                                                     |
+| ------------------------------------- | ------------------------------------------------------- |
+| `DATABASE_URL`                        | Points Prisma and the seed at your MySQL instance.      |
+| `AUTH_SECRET` (and `NEXTAUTH_SECRET`) | Signs the session JWT. Generate a random 32-byte value. |
 
 ## Available Scripts
 
@@ -182,11 +205,11 @@ perceptually even light/dark pairs and predictable contrast in both themes.
 | Phase | Scope                | Status      |
 | ----- | -------------------- | ----------- |
 | 1     | Project Foundation   | Complete    |
-| 2     | Database             | Not Started |
-| 3     | Authentication       | Not Started |
-| 4     | Admin Dashboard      | Not Started |
-| 5     | Public Portfolio     | Not Started |
-| 6     | Internationalization | Partial     |
+| 2     | Database             | Complete    |
+| 3     | Authentication       | Complete    |
+| 4     | Admin Dashboard      | In Progress |
+| 5     | Public Portfolio     | Complete    |
+| 6     | Internationalization | Complete    |
 | 7     | Theme                | Complete    |
 | 8     | Animation and Polish | Partial     |
 | 9     | SEO                  | Partial     |

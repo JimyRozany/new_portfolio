@@ -111,6 +111,11 @@ model Project {
 
   category String? @db.VarChar(120)
 
+  /// Stack used to build the project, as a JSON array of strings. Stored as
+  /// JSON rather than a join table because the list is only ever read whole,
+  /// never aggregated on, and the project needs to be searchable by it.
+  technologies Json?
+
   liveUrl String? @map("live_url") @db.VarChar(255)
   githubUrl String? @map("github_url") @db.VarChar(255)
 
@@ -224,6 +229,10 @@ model Experience {
   current Boolean @default(false)
 
   location String? @db.VarChar(120)
+
+  /// Stack used in this role, as a JSON array of strings. Same rationale as
+  /// `Project.technologies`: read whole, never aggregated on.
+  technologies Json?
 
   sortOrder Int @default(0) @map("sort_order")
 

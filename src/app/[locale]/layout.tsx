@@ -107,6 +107,10 @@ export default async function LocaleLayout({
       dir={getDirection(locale as Locale)}
       suppressHydrationWarning
       className={fontVariables}
+      // Tells Next.js the document scrolls smoothly, so it can use an instant
+      // scroll during route transitions (the correct behaviour when jumping to
+      // the top of a new page) while leaving in-page anchor scrolling smooth.
+      data-scroll-behavior="smooth"
     >
       <body className="flex min-h-dvh flex-col">
         <NextIntlClientProvider>

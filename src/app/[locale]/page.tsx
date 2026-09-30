@@ -1,7 +1,26 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Hero } from '@/components/public/hero';
-import { routing } from '@/i18n/routing';
+import { HomeAbout } from '@/components/sections/home-about';
+import { HomeCta } from '@/components/sections/home-cta';
+import {
+  HomeEducation,
+  HomeExperience,
+  HomeProjects,
+  HomeServices,
+  HomeSkills,
+  HomeTestimonials,
+} from '@/components/sections/home-sections';
+import { routing, type Locale } from '@/i18n/routing';
+import {
+  getEducations,
+  getExperiences,
+  getProjects,
+  getServices,
+  getSiteSettings,
+  getSkills,
+  getTestimonials,
+} from '@/server/queries/portfolio';
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -22,15 +41,44 @@ export async function generateMetadata({
 /**
  * Home page.
  *
- * Phase 1 ships the hero alone: it is the section that exercises the entire
- * design system (display type scale, motion, theme, RTL). The remaining
- * sections — about, skills, featured projects, experience, education, services,
- * testimonials, CTA and contact — are added in Phase 5 on top of the database
- * and service layer so their content is editable from the dashboard.
+ * The hero is followed by one band per collection, all fed from the database so
+ * the page is editable from the dashboard. Each band is fetched with a limit and
+ * returns `null` when its collection is empty, so a brand new install renders a
+ * clean, shorter page instead of a row of empty headings.
+ *
+ * The queries are issued together rather than awaited one at a time: they are
+ * independent, cached per locale, and the database can serve them concurrently.
  */
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <Hero />;
+  const typedLocale = locale as Locale;
+
+  const [settings, skills, projects, experiences, educations, services, testimonials] =
+    await Promise.all([
+      getSiteSettings(typedLocale),
+      getSkills(typedLocale),
+      // Six featured-or-recent projects: enough to fill a three-column grid twice.
+      getProjects(typedLocale, { limit: 6 }),
+      getExperiences(typedLocale),
+      getEducations(typedLocale),
+      getServices(typedLocale),
+      getTestimonials(typedLocale, { featuredOnly: true }),
+    ]);
+
+  return (
+    <>
+      <Hero />
+
+      <HomeAbout settings={settings} />
+      <HomeSkills skills={skills} />
+      <HomeProjects projects={projects} />
+      <HomeExperience experiences={experiences} />
+      <HomeEducation educations={educations} />
+      <HomeServices services={services} />
+      <HomeTestimonials testimonials={testimonials} />
+      <HomeCta settings={settings} />
+    </>
+  );
 }

@@ -15,7 +15,11 @@
 import 'dotenv/config';
 
 import { PrismaMariaDb } from '@prisma/adapter-mariadb';
+import { hash } from 'bcryptjs';
 import { PrismaClient, type ProjectStatus } from '../src/generated/prisma/client';
+
+/** Same cost as `auth.ts` and `prisma/reset-password.ts`, so hashes are uniform. */
+const BCRYPT_COST = 12;
 
 // ---------------------------------------------------------------------------
 // Connection
@@ -51,18 +55,33 @@ const date = (value: string): Date => new Date(`${value}-01T00:00:00.000Z`);
 // Users
 // ---------------------------------------------------------------------------
 
+/**
+ * Admin account.
+ *
+ * The email comes from `ADMIN_EMAIL` and the password from `ADMIN_PASSWORD` in
+ * `.env`, so the credentials are configured in one place instead of being
+ * duplicated here. The password is hashed at seed time rather than stored as a
+ * literal: a bcrypt hash committed to the repository is a published password,
+ * however "placeholder" the comment claims.
+ *
+ * Both are only applied when the row is **created**. A later `db:seed` refreshes
+ * the profile but leaves `passwordHash` alone, so re-seeding cannot silently
+ * reset a password the owner has since changed --- that is what
+ * `npm run db:reset-password` is for.
+ */
+const adminEmail = (process.env.ADMIN_EMAIL ?? 'rozny@yahoo.com').trim().toLowerCase();
+const adminPassword = process.env.ADMIN_PASSWORD ?? 'ChangeMe!2026';
+
+if (adminPassword.length < 8) {
+  throw new Error('ADMIN_PASSWORD must be at least 8 characters long.');
+}
+
 const users = [
   {
-    email: 'rozny@yahoo.com',
+    email: adminEmail,
     name: 'Mohamed Gamal',
     role: 'ADMIN' as const,
-    /**
-     * Placeholder hash for "ChangeMe!2026". The owner replaces it on first
-     * login (or via `npm run db:reset-password`). Shipping a known password
-     * even in a seed file would be a mistake, so this one is deliberately
-     * random and unusable until reset.
-     */
-    passwordHash: '$2b$12$Jm0kQ8B0n1Z0kHqQe4m8Yh1LwPZ7s3XvN6aJcRbTgU4mKdWyEoS1q',
+    passwordHash: await hash(adminPassword, BCRYPT_COST),
   },
 ];
 
@@ -117,6 +136,8 @@ type ProjectSeed = {
   longDescriptionEn: string;
   longDescriptionAr: string;
   category: string;
+  /** Stack used, inferred from the project description in the owner's CV. */
+  technologies: string[];
   featured: boolean;
   status: ProjectStatus;
   sortOrder: number;
@@ -134,6 +155,7 @@ const projects: ProjectSeed[] = [
       'Built the admin dashboard used to manage more than 200 products, coupons, advertisements and banners. Implemented a coupon engine supporting fixed and percentage discounts as well as product-specific rules. Integrated payment gateway APIs to reduce checkout friction and enable secure transactions, and managed global state with Redux while improving component reuse across the dashboard.',
     longDescriptionAr:
       'بنيت لوحة التحكم لإدارة أكثر من ٢٠٠ منتج وكوبون وإعلان وبانر. نفذت نظام كوبونات يدعم الخصم الثابت والنسبة المئوية وقواعد خاصة بمنتجات محددة. ودمجت واجهات بوابات الدفع لتقليل احتكاك الدفع وتمكين معاملات آمنة، مع إدارة الحالة العامة عبر Redux وتحسين إعادة استخدام المكوّنات في اللوحة.',
+    technologies: ['Laravel', 'React', 'Redux', 'MySQL', 'REST API'],
     category: 'E-commerce',
     featured: true,
     status: 'PUBLISHED' as ProjectStatus,
@@ -150,6 +172,7 @@ const projects: ProjectSeed[] = [
       'Designed the interface that surfaces complex genetic analysis results coming from backend APIs in a clear, readable layout. Worked with structured API data covering genetic diseases and mutation reports, and collaborated closely with the backend team while integrating AI-based analysis features.',
     longDescriptionAr:
       'صممت الواجهة التي تعرض نتائج التحليل الجيني المعقدة القادمة من واجهات البرمجة الخلفية بتخطيط واضح وسهل القراءة. تعاملت مع بيانات منظمة تغطي الأمراض الجينية وتقارير الطفرات، وتعاونت عن قرب مع فريق الخلفية أثناء دمج خصائص التحليل المدعومة بالذكاء الاصطناعي.',
+    technologies: ['React', 'REST API', 'AI Integration'],
     category: 'Medical',
     featured: true,
     status: 'PUBLISHED' as ProjectStatus,
@@ -166,6 +189,7 @@ const projects: ProjectSeed[] = [
       'Rebuilt the entire frontend from scratch, replacing a legacy UI with a modern, role-aware interface. Refactored the backend by updating models and migrations and implementing a complete role and permission system. Delivered modules for project creation, client and employee management, task assignment, stage tracking, calendar integration and sticky-note follow-ups.',
     longDescriptionAr:
       'أعدت بناء الواجهة الأمامية بالكامل من الصفر، مستبدلةً واجهة قديمة بواجهة حديثة مبنية على الأدوار. وأعدت هيكلة الخلفية بتحديث النماذج والترحيلات وتنفيذ نظام كامل للأدوار والصلاحيات. وسلمت وحدات لإنشاء المشاريع وإدارة العملاء والموظفين وإسناد المهام وتتبع المراحل وربط التقويم ومتابعة الملاحظات.',
+    technologies: ['Laravel', 'React', 'MySQL', 'RBAC', 'Migrations'],
     category: 'Project Management',
     featured: true,
     status: 'PUBLISHED' as ProjectStatus,
@@ -182,6 +206,7 @@ const projects: ProjectSeed[] = [
       'Extended the ERP with sales and purchase modules, invoices, returns and improved POS logic. Updated inventory and stock-management workflows to match new business requirements. Resolved multilingual and translation issues while maintaining the Laravel Modules architecture.',
     longDescriptionAr:
       'طوّرت نظام ERP بإضافة وحدات المبيعات والمشتريات والفواتير والمرتجعات وتحسين منطق نقاط البيع. حدّثت تدفقات المخزون وإدارة المستودعات لتتوافق مع متطلبات العمل الجديدة. وعالجت مشكلات تعدد اللغات والترجمة مع الحفاظ على بنية Laravel Modules.',
+    technologies: ['Laravel', 'Laravel Modules', 'MySQL', 'i18n'],
     category: 'Enterprise',
     featured: false,
     status: 'PUBLISHED' as ProjectStatus,
@@ -197,6 +222,7 @@ const projects: ProjectSeed[] = [
       'Personal project. An e-commerce frontend covering product listing, cart management and the checkout flow, built to practise component composition and state handling on a realistic storefront.',
     longDescriptionAr:
       'مشروع شخصي. واجهة متجر إلكتروني تغطي عرض المنتجات وإدارة السلة ومسار الشراء، بُني للتدرّب على تركيب المكوّنات والتعامل مع الحالة في واجهة واقعية.',
+    technologies: ['React', 'Redux', 'Tailwind CSS'],
     category: 'E-commerce',
     featured: false,
     status: 'PUBLISHED' as ProjectStatus,
@@ -212,6 +238,7 @@ const projects: ProjectSeed[] = [
       'Personal project. A real-time chat application built with WebSockets, supporting live messaging and multiple user rooms.',
     longDescriptionAr:
       'مشروع شخصي. تطبيق محادثة فوري مبني بـ WebSockets يدعم الرسائل المباشرة وغرفًا متعددة للمستخدمين.',
+    technologies: ['WebSockets', 'React', 'Node.js'],
     category: 'Real-time',
     featured: false,
     status: 'PUBLISHED' as ProjectStatus,
@@ -226,6 +253,7 @@ const projects: ProjectSeed[] = [
     longDescriptionEn:
       'Personal project. A conversational chatbot integrating the OpenAI API to produce natural-language responses.',
     longDescriptionAr: 'مشروع شخصي. روبوت محادثة يدمج واجهة OpenAI لإنتاج ردود بلغة طبيعية.',
+    technologies: ['OpenAI API', 'React', 'Node.js'],
     category: 'AI',
     featured: false,
     status: 'PUBLISHED' as ProjectStatus,
@@ -241,6 +269,7 @@ const projects: ProjectSeed[] = [
       'Personal project. A RESTful Laravel and MySQL backend for a course platform implementing full CRUD operations.',
     longDescriptionAr:
       'مشروع شخصي. واجهة خلفية RESTful بـ Laravel و MySQL لمنصة دورات تنفّذ عمليات CRUD كاملة.',
+    technologies: ['Laravel', 'MySQL', 'REST API'],
     category: 'Backend',
     featured: false,
     status: 'PUBLISHED' as ProjectStatus,
@@ -255,6 +284,7 @@ const projects: ProjectSeed[] = [
     longDescriptionEn:
       'Personal project. A CRUD-based backend system for managing restaurant menus and orders.',
     longDescriptionAr: 'مشروع شخصي. نظام خلفي مبني على CRUD لإدارة قوائم المطاعم والطلبات.',
+    technologies: ['Laravel', 'MySQL', 'REST API'],
     category: 'Backend',
     featured: false,
     status: 'PUBLISHED' as ProjectStatus,
@@ -270,6 +300,7 @@ const projects: ProjectSeed[] = [
       'Personal project. A live weather lookup app consuming a third-party weather API and rendering the forecast.',
     longDescriptionAr:
       'مشروع شخصي. تطبيق بحث مباشر عن الطقس يستهلك واجهة طقس خارجية ويعرض التوقعات.',
+    technologies: ['React', 'REST API', 'CSS'],
     category: 'Frontend',
     featured: false,
     status: 'PUBLISHED' as ProjectStatus,
@@ -285,6 +316,7 @@ const projects: ProjectSeed[] = [
       'Collaborated on a multi-page gaming website integrated with a Laravel backend API, fixing existing UI and logic bugs to improve overall platform stability.',
     longDescriptionAr:
       'تعاونت في موقع ألعاب متعدد الصفحات مدمج مع واجهة خلفية بـ Laravel، وأصلحت أخطاء موجودة في الواجهة والمنطق لتحسين استقرار المنصة.',
+    technologies: ['Laravel', 'REST API', 'JavaScript'],
     category: 'Gaming',
     featured: false,
     status: 'PUBLISHED' as ProjectStatus,
@@ -304,6 +336,7 @@ const experiences = [
     location: 'Cairo, Egypt',
     startDate: date('2025-04'),
     endDate: null,
+    technologies: ['Laravel', 'React', 'MySQL', 'REST API'],
     current: true,
     sortOrder: 1,
     descriptionEn:
@@ -318,6 +351,7 @@ const experiences = [
     location: 'Cairo, Egypt',
     startDate: date('2023-01'),
     endDate: date('2024-04'),
+    technologies: ['React.js', 'JavaScript', 'CSS'],
     current: false,
     sortOrder: 2,
     descriptionEn:
@@ -332,6 +366,7 @@ const experiences = [
     location: 'Cairo, Egypt',
     startDate: date('2024-04'),
     endDate: date('2025-03'),
+    technologies: ['Networking', 'Linux', 'Windows'],
     current: false,
     sortOrder: 3,
     descriptionEn:

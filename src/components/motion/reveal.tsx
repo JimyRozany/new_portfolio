@@ -7,6 +7,26 @@ import { EASE_OUT_EXPO, fadeUp } from './motion-presets';
 
 type Offset = 'up' | 'down' | 'start' | 'end' | 'none';
 
+/**
+ * Tags a reveal may render as.
+ *
+ * The animated elements have to be real list items or sections sometimes: a
+ * `<div>` inside `<ol>` is invalid HTML and breaks the list semantics that make
+ * a timeline navigable, so the tag is selectable rather than hard-coded to
+ * `div`. Kept to the handful of structural tags the site actually needs.
+ */
+export type RevealTag = 'div' | 'li' | 'ul' | 'ol' | 'section' | 'article' | 'figure';
+
+const MOTION_TAGS = {
+  div: motion.div,
+  li: motion.li,
+  ul: motion.ul,
+  ol: motion.ol,
+  section: motion.section,
+  article: motion.article,
+  figure: motion.figure,
+} as const;
+
 const OFFSET_MAP: Record<Offset, { x: number; y: number }> = {
   up: { x: 0, y: 28 },
   down: { x: 0, y: -28 },
@@ -15,11 +35,13 @@ const OFFSET_MAP: Record<Offset, { x: number; y: number }> = {
   none: { x: 0, y: 0 },
 };
 
-export type RevealProps = {
+export type RevealProps<T extends RevealTag = 'div'> = {
   children?: React.ReactNode;
   className?: string;
   /** Direction the element travels *from*. */
   offset?: Offset;
+  /** Element to render. Defaults to `div`; use `li` inside a list. */
+  as?: T;
   /** Seconds to wait before animating. */
   delay?: number;
   /** Seconds the animation runs for. */
@@ -27,7 +49,7 @@ export type RevealProps = {
   /** Fraction of the element that must be visible before it animates. */
   amount?: number;
   /** Rest props forwarded to the underlying `motion` element. */
-  motionProps?: React.ComponentProps<typeof motion.div>;
+  motionProps?: React.ComponentProps<(typeof MOTION_TAGS)[T]>;
 };
 
 /**
@@ -44,22 +66,27 @@ export type RevealProps = {
  * Extra props go through `motionProps` rather than being spread directly, which
  * keeps the public API of this component small and typed.
  */
-export function Reveal({
+export function Reveal<T extends RevealTag = 'div'>({
   children,
   className,
   offset = 'up',
+  as = 'div' as T,
   delay = 0,
   duration = 0.7,
   amount = 0.2,
   motionProps,
-}: RevealProps) {
+}: RevealProps<T>) {
   const direction = useDirection();
   const base = OFFSET_MAP[offset];
   // `x` is a physical axis, so mirror it in RTL.
   const x = direction === 'rtl' ? -base.x : base.x;
+  // The tag is chosen at runtime, so the union of motion components has to be
+  // widened here. The *call site* stays type-safe: `motionProps` is checked
+  // against the specific element requested by `as`.
+  const Component = MOTION_TAGS[as] as React.ElementType;
 
   return (
-    <motion.div
+    <Component
       className={cn(className)}
       initial={{ opacity: 0, x, y: base.y }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -68,11 +95,14 @@ export function Reveal({
       {...motionProps}
     >
       {children}
-    </motion.div>
+    </Component>
   );
 }
 
-export type StaggerProps = Omit<RevealProps, 'offset' | 'duration'> & {
+export type StaggerProps<T extends RevealTag = 'div'> = Omit<
+  RevealProps<T>,
+  'offset' | 'duration'
+> & {
   /** Seconds between each child's animation. */
   stagger?: number;
 };
@@ -81,16 +111,19 @@ export type StaggerProps = Omit<RevealProps, 'offset' | 'duration'> & {
  * Container that staggers its children on scroll.
  * Pair with `<StaggerItem>` for grids and lists.
  */
-export function Stagger({
+export function Stagger<T extends RevealTag = 'div'>({
   children,
   className,
+  as = 'div' as T,
   stagger = 0.09,
   delay = 0,
   amount = 0.15,
   motionProps,
-}: StaggerProps) {
+}: StaggerProps<T>) {
+  const Component = MOTION_TAGS[as] as React.ElementType;
+
   return (
-    <motion.div
+    <Component
       className={cn(className)}
       initial="hidden"
       whileInView="visible"
@@ -102,17 +135,27 @@ export function Stagger({
       {...motionProps}
     >
       {children}
-    </motion.div>
+    </Component>
   );
 }
 
-export type StaggerItemProps = Omit<RevealProps, 'offset' | 'delay' | 'duration' | 'amount'>;
+export type StaggerItemProps<T extends RevealTag = 'div'> = Omit<
+  RevealProps<T>,
+  'offset' | 'delay' | 'duration' | 'amount'
+>;
 
 /** Child of `<Stagger>` — inherits the container's timing automatically. */
-export function StaggerItem({ children, className, motionProps }: StaggerItemProps) {
+export function StaggerItem<T extends RevealTag = 'div'>({
+  children,
+  className,
+  as = 'div' as T,
+  motionProps,
+}: StaggerItemProps<T>) {
+  const Component = MOTION_TAGS[as] as React.ElementType;
+
   return (
-    <motion.div className={cn(className)} variants={fadeUp} {...motionProps}>
+    <Component className={cn(className)} variants={fadeUp} {...motionProps}>
       {children}
-    </motion.div>
+    </Component>
   );
 }

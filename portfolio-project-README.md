@@ -1692,35 +1692,59 @@ Tasks:
 Status:
 
 ```text
-[ ] Not Started
+[x] Complete
 ```
 
+Implementation notes:
+
+- Auth.js v5 (`next-auth@5.0.0-beta.32`) with a credentials provider and a
+  **JWT** session, so authorisation costs no database round trip.
+- The config is split: `src/auth.config.ts` is edge-safe (no Prisma, no bcrypt)
+  and is what the proxy reads; `src/auth.ts` adds the credentials provider,
+  bcrypt verification and the session callbacks.
+- Rate limiting lives in `src/server/auth/rate-limit.ts` (5 attempts per 15
+  minutes, keyed on IP + email).
+- Two independent checks guard the dashboard:
+  1. `src/proxy.ts` redirects anonymous visitors to `/admin/login` and keeps the
+     deep link in `callbackUrl`.
+  2. `requireUser()` on every admin render path --- the real boundary, since a
+     proxy matcher can be bypassed by posting straight to a Server Action.
+- The `authorized` Auth.js callback is deliberately **not** used. Because the
+  proxy supplies its own handler, Auth.js skips the `!authorized` fallback and a
+  `false` return would be silently ignored; the guard therefore lives in the
+  proxy, checked against `request.auth`.
+- The dashboard sits outside the `[locale]` segment, is English-only, and gets
+  its own `NextIntlClientProvider` with only the `common` and `admin`
+  namespaces.
+- `prisma/seed.ts` hashes `ADMIN_PASSWORD` at seed time (bcrypt cost 12) and
+  only applies it on **create**, so re-seeding never resets a changed password.
+  `npm run db:reset-password` is the explicit way to change it.
+
 ---
-
-## Phase 4 --- Admin Dashboard
-
-Tasks:
-
-- Dashboard layout
-- Sidebar
-- Header
-- Dashboard overview
-- Projects CRUD
-- Skills CRUD
-- Experience CRUD
-- Education CRUD
-- Services CRUD
-- Testimonials CRUD
-- Social links CRUD
-- Messages
-- Settings
-- Media management
 
 Status:
 
 ```text
-[ ] Not Started
+[~] In Progress
 ```
+
+Implementation notes:
+
+Done so far:
+
+- Dashboard layout: `src/app/admin/layout.tsx` (document shell, English/LTR)
+  and `src/app/admin/(dashboard)/layout.tsx` (guarded shell).
+- Sidebar (`src/components/admin/sidebar.tsx`) driven by
+  `src/config/admin-navigation.ts`, with a collapsed icon rail persisted to
+  `localStorage` and an unread-messages badge.
+- Header with breadcrumb trail derived from the pathname, theme switcher and a
+  sign-out control posting to a server action.
+- Overview screen with stat cards, recently updated projects and latest
+  messages.
+- Read layer for every entity in `src/server/queries/admin.ts` (search, filter,
+  pagination, counts, media-usage lookups).
+
+Still to do: the CRUD screens, message triage, settings, media uploads.
 
 ---
 
@@ -1728,23 +1752,23 @@ Status:
 
 Tasks:
 
-- Navbar
-- Hero
-- About
-- Skills
-- Projects
-- Project details
-- Experience
-- Education
-- Services
-- Testimonials
-- Contact
-- Footer
+- [x] Navbar
+- [x] Hero
+- [x] About
+- [x] Skills
+- [x] Projects
+- [x] Project details
+- [x] Experience
+- [x] Education
+- [x] Services
+- [x] Testimonials
+- [x] Contact
+- [x] Footer
 
 Status:
 
 ```text
-[ ] Not Started
+[x] Complete
 ```
 
 ---
@@ -1753,20 +1777,25 @@ Status:
 
 Tasks:
 
-- English
-- Arabic
-- RTL
-- LTR
-- Language switcher
-- Localized database content
-- Localized metadata
-- Localized validation messages
+- [x] English
+- [x] Arabic
+- [x] RTL
+- [x] LTR
+- [x] Language switcher
+- [x] Localized database content
+- [x] Localized metadata
+- [x] Localized validation messages
 
 Status:
 
 ```text
-[ ] Not Started
+[x] Complete
 ```
+
+Both locales are prerendered at build time. `dir="rtl"` is set on `<html>` for
+Arabic, so RTL is a real browser-level direction (caret behaviour, screen-reader
+voice, text selection) rather than a CSS approximation. Layout uses logical CSS
+properties throughout, so mirroring needs no RTL-specific stylesheet.
 
 ---
 
@@ -1812,18 +1841,18 @@ Status:
 
 Tasks:
 
-- Metadata
-- Open Graph
-- Sitemap
-- Robots
-- Canonical URLs
-- Structured data
-- Localized SEO
+- [x] Metadata
+- [x] Open Graph
+- [x] Sitemap
+- [x] Robots
+- [x] Canonical URLs
+- [ ] Structured data
+- [x] Localized SEO
 
 Status:
 
 ```text
-[ ] Not Started
+[~] In Progress --- everything except JSON-LD
 ```
 
 ---
@@ -2190,10 +2219,10 @@ Use this section as the single source of truth for progress.
 | ------ | -------------------------------------- | ----------- |
 | Phase 1 | Project Foundation                     | Complete    |
 | Phase 2 | Database (Prisma + MySQL 8)            | Complete    |
-| Phase 3 | Authentication                         | Not Started |
-| Phase 4 | Admin Dashboard                        | Not Started |
-| Phase 5 | Public Portfolio                       | Not Started |
-| Phase 6 | Internationalization                   | Partial     |
+| Phase 3 | Authentication                         | Complete    |
+| Phase 4 | Admin Dashboard                        | In Progress |
+| Phase 5 | Public Portfolio                       | Complete    |
+| Phase 6 | Internationalization                   | Complete    |
 | Phase 7 | Theme                                  | Complete    |
 | Phase 8 | Animation and Polish                   | Partial     |
 | Phase 9 | SEO                                    | Partial     |
@@ -2202,18 +2231,39 @@ Use this section as the single source of truth for progress.
 
 Notes:
 
+- **Phase 5** --- all six public routes are built and statically generated in
+  both locales, and project detail pages come from the database. The homepage
+  is a single composition of the same components, so the content is edited in one
+  place. Every band hides itself when its collection is empty, so a fresh install
+  renders a shorter page rather than a row of empty headings.
 - **Phase 6** --- routing, message catalogues, RTL and translated metadata are
-  in place; page content still lands in Phase 5.
-- **Phase 8** --- the motion primitives and the Hero animations exist; the
-  remaining sections are built with them in Phase 5.
+  complete. No user-facing string is hardcoded: nav labels, section headings,
+  validation errors and metadata all resolve from `src/messages/`.
+- **Phase 8** --- the motion primitives and the Hero animations exist, and every
+  content section is built on top of them. `prefers-reduced-motion` is respected
+  throughout.
 - **Phase 9** --- `generateMetadata` resolves title / description / keywords /
-  Open Graph per locale; sitemap, robots and JSON-LD land in Phase 9.
+  Open Graph / Twitter cards / canonical per locale, and `src/app/sitemap.ts` and
+  `src/app/robots.ts` are generated from the live project table with `hreflang`
+  alternates. JSON-LD structured data is the only item still open.
 - **Database engine** --- MySQL 8 rather than the PostgreSQL named in the
   original brief, because MySQL is what the development machine runs. Every
   construct used in the schema is portable, so switching is cheap.
-- **Build-time database access** --- `npm run build` must not require a live
-  connection, so pages that read the database will opt into dynamic rendering
-  explicitly rather than being prerendered.
+- **Build-time database access** --- the original plan was to keep the build
+  independent of the database. In practice `generateStaticParams` reads the
+  published project slugs so all 11 detail pages are prerendered rather than
+  rendered on first request, which means **`npm run build` requires MySQL to be
+  reachable.** That is the right trade-off for a portfolio whose whole value is
+  fast, crawlable pages; if that ever needs to change, drop
+  `generateStaticParams` from `src/app/[locale]/projects/[slug]/page.tsx` and the
+  page renders on demand instead.
+- **Project `technologies`** --- stored as a JSON array on `Project` and
+  `Experience` rather than a many-to-many join table. The array is always read
+  whole for display and never queried by element, so a join table would add
+  queries and a pivot model without buying anything.
+- **Project thumbnails** --- the column exists and the UI prefers it, but the
+  seeded projects have none, so `ProjectThumb` draws a deterministic generated
+  cover from the slug until real images are uploaded through the dashboard.
 
 
 ---
