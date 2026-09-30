@@ -1,0 +1,527 @@
+/* ==========================================================================
+   Design System — "Editorial Technical"
+   --------------------------------------------------------------------------
+   A single source of truth for colour, typography, spacing, radii, shadows,
+   elevation and motion. Every component consumes these tokens so the public
+   website and the admin dashboard stay visually identical.
+
+   Colour is authored in OKLCH for perceptually even contrast across themes.
+   The palette is intentionally near-monochrome with ONE signature accent
+   ("volt") so the design reads premium instead of noisy.
+   ========================================================================== */
+
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/* Class-based dark mode (driven by `next-themes`). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* --------------------------------------------------------------------------
+   1. Semantic colour tokens
+   -------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+
+  /* Core surfaces — warm paper neutrals */
+  --background: oklch(0.9852 0.0028 106);
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.9724 0.0038 106);
+  --surface-3: oklch(0.9512 0.0048 106);
+
+  /* Text */
+  --foreground: oklch(0.1878 0.0056 106);
+  --muted: oklch(0.5384 0.0082 106);
+  --muted-foreground: oklch(0.4702 0.0088 106);
+  --subtle-foreground: oklch(0.6042 0.0086 106);
+
+  /* Lines */
+  --border: oklch(0.9016 0.0058 106);
+  --border-strong: oklch(0.8362 0.0072 106);
+  --input: oklch(0.9016 0.0058 106);
+  --ring: oklch(0.1878 0.0056 106);
+
+  /* Signature accent — "volt" */
+  --accent: oklch(0.8122 0.2046 122.4);
+  --accent-hover: oklch(0.7568 0.2112 122.4);
+  --accent-foreground: oklch(0.2236 0.0634 122.4);
+  --accent-soft: oklch(0.9412 0.0684 122.4);
+  --accent-ring: oklch(0.8122 0.2046 122.4 / 0.45);
+
+  /* Status */
+  --success: oklch(0.6402 0.1522 152.6);
+  --success-soft: oklch(0.9382 0.0704 152.6);
+  --success-foreground: oklch(0.3016 0.0724 152.6);
+  --warning: oklch(0.7412 0.1582 71.4);
+  --warning-soft: oklch(0.9512 0.0716 82.4);
+  --warning-foreground: oklch(0.3514 0.0812 68.2);
+  --danger: oklch(0.5842 0.2118 25.6);
+  --danger-soft: oklch(0.9412 0.0418 25.6);
+  --danger-foreground: oklch(0.3412 0.1284 25.6);
+  --info: oklch(0.5842 0.1642 246.2);
+  --info-soft: oklch(0.9412 0.0424 246.2);
+  --info-foreground: oklch(0.3312 0.1092 246.2);
+
+  /* Overlays */
+  --overlay: oklch(0.1878 0.0056 106 / 0.42);
+
+  /* Ambient light — used for the subtle background glow. */
+  --glow-a: oklch(0.8122 0.2046 122.4 / 0.16);
+  --glow-b: oklch(0.7412 0.1042 246.2 / 0.12);
+  --grid-line: oklch(0.1878 0.0056 106 / 0.045);
+}
+
+.dark {
+  color-scheme: dark;
+
+  /* Core surfaces — deep, slightly warm charcoal (not a pure inversion). */
+  --background: oklch(0.1636 0.0042 106);
+  --surface: oklch(0.1962 0.0048 106);
+  --surface-2: oklch(0.2242 0.0054 106);
+  --surface-3: oklch(0.2624 0.0062 106);
+
+  /* Text */
+  --foreground: oklch(0.9662 0.0034 106);
+  --muted: oklch(0.5814 0.0062 106);
+  --muted-foreground: oklch(0.6784 0.0068 106);
+  --subtle-foreground: oklch(0.5612 0.0062 106);
+
+  /* Lines */
+  --border: oklch(0.2784 0.0062 106);
+  --border-strong: oklch(0.3712 0.0072 106);
+  --input: oklch(0.3024 0.0064 106);
+  --ring: oklch(0.8462 0.1842 122.4);
+
+  /* Signature accent — "volt" (brighter at night, same hue family) */
+  --accent: oklch(0.8742 0.2124 122.4);
+  --accent-hover: oklch(0.9142 0.1842 122.4);
+  --accent-foreground: oklch(0.2012 0.0624 122.4);
+  --accent-soft: oklch(0.2964 0.0712 122.4);
+  --accent-ring: oklch(0.8742 0.2124 122.4 / 0.5);
+
+  /* Status */
+  --success: oklch(0.7216 0.1622 152.6);
+  --success-soft: oklch(0.2864 0.0612 152.6);
+  --success-foreground: oklch(0.8612 0.1124 152.6);
+  --warning: oklch(0.8216 0.1482 78.4);
+  --warning-soft: oklch(0.3042 0.0624 78.4);
+  --warning-foreground: oklch(0.9012 0.1084 82.4);
+  --danger: oklch(0.6716 0.1918 25.6);
+  --danger-soft: oklch(0.3024 0.0842 25.6);
+  --danger-foreground: oklch(0.8812 0.0924 25.6);
+  --info: oklch(0.6912 0.1482 246.2);
+  --info-soft: oklch(0.2984 0.0722 246.2);
+  --info-foreground: oklch(0.8712 0.1024 246.2);
+
+  /* Overlays */
+  --overlay: oklch(0.0874 0.0038 106 / 0.72);
+
+  /* Ambient light */
+  --glow-a: oklch(0.8742 0.2124 122.4 / 0.14);
+  --glow-b: oklch(0.6412 0.1342 246.2 / 0.16);
+  --grid-line: oklch(0.9662 0.0034 106 / 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   2. Expose tokens as Tailwind utilities
+   `inline` keeps the utilities pointing at the runtime CSS variable, which is
+   what makes the theme switch instant without a second compiled stylesheet.
+   -------------------------------------------------------------------------- */
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-info-foreground: var(--info-foreground);
+
+  /* Typography */
+  --font-sans: var(--font-inter), var(--font-arabic), ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    var(--font-display-face), var(--font-arabic), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Fluid type scale — scales with the viewport instead of jumping at a bp. */
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.5;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.6;
+  --text-body: 1rem;
+  --text-body--line-height: 1.7;
+  --text-body-lg: 1.0625rem;
+  --text-body-lg--line-height: 1.75;
+  --text-h4: clamp(1.0625rem, 1.02rem + 0.22vw, 1.1875rem);
+  --text-h4--line-height: 1.4;
+  --text-h3: clamp(1.1875rem, 1.11rem + 0.4vw, 1.4375rem);
+  --text-h3--line-height: 1.35;
+  --text-h2: clamp(1.5rem, 1.28rem + 1.05vw, 2.125rem);
+  --text-h2--line-height: 1.2;
+  --text-h1: clamp(2rem, 1.5rem + 2.4vw, 3.25rem);
+  --text-h1--line-height: 1.08;
+  --text-display: clamp(2.5rem, 1.35rem + 5.4vw, 5.25rem);
+  --text-display--line-height: 1.02;
+  --text-display-sm: clamp(2rem, 1.4rem + 2.9vw, 3.5rem);
+  --text-display-sm--line-height: 1.06;
+
+  /* Radii */
+  --radius-xs: 0.375rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
+  --radius-3xl: 2.25rem;
+
+  /* Elevation — layered, low-spread shadows instead of one heavy drop. */
+  --shadow-xs: 0 1px 2px 0 oklch(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 2px 0 oklch(0 0 0 / 0.05), 0 1px 3px 0 oklch(0 0 0 / 0.06);
+  --shadow-md: 0 2px 4px -1px oklch(0 0 0 / 0.06), 0 6px 16px -4px oklch(0 0 0 / 0.1);
+  --shadow-lg: 0 4px 8px -2px oklch(0 0 0 / 0.07), 0 16px 40px -8px oklch(0 0 0 / 0.14);
+  --shadow-xl: 0 8px 16px -4px oklch(0 0 0 / 0.08), 0 32px 72px -12px oklch(0 0 0 / 0.2);
+  --shadow-glow: 0 0 0 1px var(--accent-ring), 0 10px 40px -10px var(--glow-a);
+  --shadow-inset-hairline: inset 0 1px 0 0 oklch(1 0 0 / 0.06);
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: linear(
+    0,
+    0.0067,
+    0.0253 2.8%,
+    0.1012 5.6%,
+    0.539 12.9%,
+    0.7213 16.7%,
+    0.8493 20.6%,
+    0.9374 24.6%,
+    0.9682 27%,
+    0.9885 29.6%,
+    0.9987 32.6%,
+    1.0041 36.4%,
+    1.0049 41.6%,
+    1.0011 49.6%,
+    0.9992 63.4%,
+    1
+  );
+
+  --animate-fade-up: fade-up 0.65s var(--ease-out-expo) both;
+  --animate-fade-in: fade-in 0.45s var(--ease-standard) both;
+  --animate-shimmer: shimmer 1.8s linear infinite;
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-aurora: aurora 18s var(--ease-in-out-soft) infinite alternate;
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-blink: blink 1.1s steps(2, start) infinite;
+  --animate-draw: draw 1.4s var(--ease-out-expo) forwards;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    /* -50% because the track is duplicated for a seamless loop. */
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes aurora {
+  from {
+    transform: translate3d(-4%, -2%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(4%, 3%, 0) scale(1.12);
+  }
+}
+
+@keyframes blink {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Base layer
+   -------------------------------------------------------------------------- */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+    /* Sticky header height, keeps in-page anchors from hiding under the nav. */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Subtle ambient light so flat backgrounds feel considered. */
+    background-image:
+      radial-gradient(60rem 40rem at 82% -8%, var(--glow-b), transparent 65%),
+      radial-gradient(48rem 32rem at 8% 0%, var(--glow-a), transparent 60%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  /* Latin fonts are visually larger; a hair of tracking keeps the rhythm even. */
+  :lang(en) body {
+    letter-spacing: -0.011em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
+
+  /* Arabic has no uppercase and needs looser tracking to breathe. */
+  :lang(ar) h1,
+  :lang(ar) h2,
+  :lang(ar) h3,
+  :lang(ar) h4 {
+    letter-spacing: 0;
+    line-height: 1.35;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* A single, consistent focus treatment across the whole product. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  /* Refined scrollbar that matches the neutral palette. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--border-strong);
+    border: 3px solid transparent;
+    border-radius: 9999px;
+    background-clip: content-box;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: var(--muted);
+    background-clip: content-box;
+  }
+
+  /* Reserve space for the scrollbar so opening an overlay never shifts layout. */
+  html {
+    scrollbar-gutter: stable;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Component / layout utilities
+   -------------------------------------------------------------------------- */
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  max-width: 90rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility container-prose {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 46rem;
+}
+
+/* Frosted panel used for sticky headers, the mobile drawer and the command bar. */
+@utility glass {
+  background-color: color-mix(in oklab, var(--surface) 78%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* Faint technical grid — adds depth without competing with the content. */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center;
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    to bottom,
+    var(--foreground) 0%,
+    color-mix(in oklab, var(--foreground) 58%, transparent) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Underline-highlight motif used to emphasise keywords in headings. */
+@utility highlight {
+  position: relative;
+  white-space: nowrap;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0.06em;
+    height: 0.34em;
+    background-color: var(--accent);
+    opacity: 0.45;
+    z-index: -1;
+    border-radius: 2px;
+  }
+}
+
+/* Hairline border that fades out — softer than a full outline. */
+@utility hairline-b {
+  border-bottom: 1px solid var(--border);
+}
+
+@utility hairline-t {
+  border-top: 1px solid var(--border);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+@utility skeleton {
+  background-image: linear-gradient(
+    90deg,
+    var(--surface-2) 25%,
+    var(--surface-3) 37%,
+    var(--surface-2) 63%
+  );
+  background-size: 400% 100%;
+  animation: var(--animate-shimmer);
+  border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   5. Accessibility — honour the OS motion preference everywhere
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

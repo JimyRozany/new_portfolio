@@ -1,0 +1,348 @@
+{
+    "common": {
+        "appName": "Mohamed Gamal",
+        "loading": "Loading",
+        "loadingMore": "Loading more",
+        "error": "Something went wrong",
+        "retry": "Try again",
+        "close": "Close",
+        "cancel": "Cancel",
+        "save": "Save",
+        "saving": "Saving",
+        "saved": "Saved",
+        "delete": "Delete",
+        "edit": "Edit",
+        "create": "Create",
+        "update": "Update",
+        "search": "Search",
+        "clear": "Clear",
+        "clearFilters": "Clear filters",
+        "back": "Back",
+        "next": "Next",
+        "previous": "Previous",
+        "readMore": "Read more",
+        "showMore": "Show more",
+        "showLess": "Show less",
+        "required": "Required",
+        "optional": "Optional",
+        "yes": "Yes",
+        "no": "No",
+        "all": "All",
+        "none": "None",
+        "confirm": "Confirm",
+        "copy": "Copy link",
+        "copied": "Copied",
+        "comingSoon": "Coming soon",
+        "new": "New",
+        "actions": "Actions",
+        "status": "Status",
+        "active": "Active",
+        "inactive": "Inactive",
+        "sortOrder": "Sort order",
+        "publish": "Publish",
+        "unpublish": "Unpublish",
+        "and": "and",
+        "or": "or"
+    },
+    "nav": {
+        "label": "Main navigation",
+        "home": "Home",
+        "about": "About",
+        "projects": "Projects",
+        "experience": "Experience",
+        "services": "Services",
+        "contact": "Contact",
+        "openMenu": "Open menu",
+        "closeMenu": "Close menu",
+        "viewResume": "Résumé",
+        "skipToContent": "Skip to main content"
+    },
+    "theme": {
+        "label": "Theme",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System",
+        "toggle": "Switch theme"
+    },
+    "language": {
+        "label": "Language",
+        "switchTo": "Switch to {language}",
+        "current": "Current language: {language}"
+    },
+    "home": {
+        "hero": {
+            "eyebrow": "Available for new projects",
+            "greeting": "Hello, I'm",
+            "title": "I build fast, dependable products for the web",
+            "highlightedWord": "dependable",
+            "subtitle": "Full Stack Developer with 2+ years of hands-on experience shipping production systems with Laravel, React and Next.js — from database design and REST APIs to fast, accessible interfaces.",
+            "primaryCta": "View projects",
+            "secondaryCta": "Get in touch",
+            "scrollHint": "Scroll to explore",
+            "stats": {
+                "yearsExperience": "Years of experience",
+                "projectsShipped": "Projects shipped",
+                "stack": "Core stack"
+            }
+        },
+        "marquee": {
+            "label": "Technologies I work with"
+        },
+        "about": {
+            "eyebrow": "About me",
+            "title": "Engineering that survives real-world requirements",
+            "description": "I work end to end: modelling the database, exposing a clean API, then building an interface people actually enjoy using. I care about maintainable codebases, sensible performance work, and shipping without drama.",
+            "downloadResume": "Download résumé",
+            "viewProjects": "View projects",
+            "locationLabel": "Location",
+            "experienceLabel": "Experience",
+            "focusLabel": "Current focus",
+            "focusValue": "Laravel · React · Next.js",
+            "highlights": {
+                "title": "What I bring",
+                "fullStack": "Full-stack delivery",
+                "fullStackDescription": "From relational schema design to pixel-polished React interfaces.",
+                "performance": "Performance first",
+                "performanceDescription": "Bundle budgets, image optimisation, caching and query tuning.",
+                "quality": "Quality built in",
+                "qualityDescription": "Typed code, validation on both sides, tests around the critical paths.",
+                "collaboration": "Team player",
+                "collaborationDescription": "Comfortable in agile teams and in large legacy codebases."
+            }
+        },
+        "skills": {
+            "eyebrow": "Toolkit",
+            "title": "The stack I reach for",
+            "description": "Chosen for shipping velocity and long-term maintainability, not for trend-chasing."
+        },
+        "projects": {
+            "eyebrow": "Selected work",
+            "title": "Projects I'm proud of",
+            "description": "A selection of systems I designed, built and shipped to production.",
+            "viewAll": "View all projects"
+        },
+        "experience": {
+            "eyebrow": "Career",
+            "title": "Where I've worked",
+            "description": "Product teams and platforms that taught me how real software gets built and maintained."
+        },
+        "education": {
+            "eyebrow": "Background",
+            "title": "Education"
+        },
+        "services": {
+            "eyebrow": "Services",
+            "title": "How I can help",
+            "description": "Engagements I take on, from a focused feature to a complete system."
+        },
+        "testimonials": {
+            "eyebrow": "Testimonials",
+            "title": "What people say",
+            "description": "Feedback from teammates and clients I worked with."
+        },
+        "cta": {
+            "title": "Have a project in mind?",
+            "description": "Tell me what you're building and I'll reply with an honest take on scope, stack and timeline.",
+            "primary": "Start a conversation",
+            "secondary": "Download résumé"
+        },
+        "contact": {
+            "eyebrow": "Contact",
+            "title": "Let's build something",
+            "description": "The fastest way to reach me. I read every message."
+        }
+    },
+    "about": {
+        "meta": {
+            "title": "About",
+            "description": "Meet Mohamed Gamal, a Full Stack Developer working with Laravel, React and Next.js."
+        },
+        "eyebrow": "About",
+        "title": "A developer who owns the whole stack",
+        "summary": "I build production-grade systems end to end — schema, API and interface.",
+        "philosophy": {
+            "title": "How I work",
+            "items": {
+                "understand": "Understand the domain before writing code",
+                "simple": "Prefer the simplest architecture that still scales",
+                "measure": "Measure performance instead of guessing",
+                "handover": "Leave the codebase better documented than I found it"
+            }
+        },
+        "downloadResume": "Download résumé",
+        "contactMe": "Get in touch"
+    },
+    "projects": {
+        "meta": {
+            "title": "Projects",
+            "description": "Selected work — web apps, e-commerce platforms, ERP systems and APIs."
+        },
+        "eyebrow": "Portfolio",
+        "title": "Projects",
+        "description": "Systems I designed, built and shipped. Filter by category or search by technology.",
+        "searchPlaceholder": "Search by title or technology…",
+        "resultsCount": "{count, plural, =0 {No projects} one {# project} other {# projects}}",
+        "filters": {
+            "label": "Filter by category",
+            "all": "All"
+        },
+        "empty": {
+            "title": "No projects yet",
+            "description": "Projects published from the dashboard will appear here."
+        },
+        "noResults": {
+            "title": "No matching projects",
+            "description": "Try a different search term or clear the filters."
+        },
+        "card": {
+            "liveDemo": "Live demo",
+            "sourceCode": "Source code",
+            "viewDetails": "View details"
+        },
+        "status": {
+            "completed": "Completed",
+            "in_progress": "In progress",
+            "archived": "Archived"
+        },
+        "categories": {
+            "web_app": "Web app",
+            "ecommerce": "E-commerce",
+            "erp": "ERP",
+            "saas": "SaaS",
+            "api": "API",
+            "mobile": "Mobile",
+            "other": "Other"
+        },
+        "detail": {
+            "overview": "Overview",
+            "gallery": "Gallery",
+            "technologies": "Technologies",
+            "features": "Key features",
+            "challenges": "Challenges",
+            "solution": "Solution",
+            "results": "Results",
+            "backToProjects": "Back to projects",
+            "nextProject": "Next project",
+            "relatedProjects": "Related projects",
+            "shareProject": "Share this project",
+            "projectNotFound": "This project could not be found."
+        }
+    },
+    "experience": {
+        "meta": {
+            "title": "Experience",
+            "description": "Roles and the products I worked on as a Full Stack Developer."
+        },
+        "eyebrow": "Career",
+        "title": "Experience",
+        "description": "A timeline of the teams I've been part of and the systems I've helped build.",
+        "present": "Present",
+        "highlights": "Highlights",
+        "technologies": "Technologies",
+        "empty": {
+            "title": "No experience entries yet",
+            "description": "Experience entries added from the dashboard will show up here."
+        }
+    },
+    "services": {
+        "meta": {
+            "title": "Services",
+            "description": "Web development, API engineering, ERP systems and technical consulting."
+        },
+        "eyebrow": "Services",
+        "title": "What I can build for you",
+        "description": "Clear scopes, realistic estimates and code you can maintain afterwards.",
+        "includes": "What's included",
+        "discuss": "Discuss a project",
+        "empty": {
+            "title": "No services yet",
+            "description": "Services added from the dashboard will show up here."
+        }
+    },
+    "contact": {
+        "meta": {
+            "title": "Contact",
+            "description": "Get in touch about a project, a role or a technical question."
+        },
+        "eyebrow": "Contact",
+        "title": "Let's talk",
+        "description": "Send a message and I'll get back to you as soon as I can.",
+        "detailsTitle": "Contact details",
+        "emailLabel": "Email",
+        "phoneLabel": "Phone",
+        "locationLabel": "Location",
+        "socialTitle": "Elsewhere",
+        "form": {
+            "title": "Send a message",
+            "name": "Name",
+            "namePlaceholder": "Jane Doe",
+            "email": "Email",
+            "emailPlaceholder": "jane@company.com",
+            "subject": "Subject",
+            "subjectPlaceholder": "What is this about?",
+            "message": "Message",
+            "messagePlaceholder": "Tell me a little about your project, timeline and budget…",
+            "submit": "Send message",
+            "submitting": "Sending…",
+            "privacyNote": "Your details are only used to reply to you. No newsletters, ever.",
+            "errors": {
+                "nameMin": "Please enter at least {min} characters.",
+                "email": "Please enter a valid email address.",
+                "subjectMin": "Please enter at least {min} characters.",
+                "messageMin": "Please enter at least {min} characters.",
+                "messageMax": "Please keep your message under {max} characters.",
+                "rateLimit": "Too many messages. Please try again in a few minutes.",
+                "generic": "We couldn't send your message. Please try again."
+            },
+            "success": {
+                "title": "Message sent",
+                "description": "Thanks for reaching out — I'll reply shortly.",
+                "sendAnother": "Send another message"
+            },
+            "failure": {
+                "title": "Message not sent",
+                "description": "Something went wrong on our side. Please try again."
+            }
+        }
+    },
+    "footer": {
+        "description": "Full Stack Developer building dependable web products with Laravel, React and Next.js.",
+        "navigation": "Navigation",
+        "connect": "Connect",
+        "contact": "Contact",
+        "copyright": "© {year} {name}. All rights reserved.",
+        "builtWith": "Built with Next.js, Tailwind CSS and Prisma.",
+        "backToTop": "Back to top",
+        "admin": "Admin"
+    },
+    "metadata": {
+        "home": {
+            "title": "Mohamed Gamal — Full Stack Developer",
+            "description": "Full Stack Developer with 2+ years of experience building production-grade systems using Laravel, React.js and Next.js."
+        },
+        "keywords": "Mohamed Gamal, Full Stack Developer, Laravel, React, Next.js, PHP, JavaScript, Portfolio"
+    },
+    "errors": {
+        "notFound": {
+            "code": "404",
+            "title": "Page not found",
+            "description": "The page you're looking for doesn't exist or has been moved."
+        },
+        "generic": {
+            "code": "Error",
+            "title": "Something went wrong",
+            "description": "An unexpected error occurred. Please try again in a moment."
+        },
+        "backHome": "Back to home"
+    },
+    "validation": {
+        "required": "This field is required.",
+        "email": "Enter a valid email address.",
+        "url": "Enter a valid URL.",
+        "minLength": "Must be at least {min} characters.",
+        "maxLength": "Must be at most {max} characters.",
+        "number": "Enter a valid number.",
+        "positive": "Enter a positive number.",
+        "invalid": "Invalid value."
+    }
+}
