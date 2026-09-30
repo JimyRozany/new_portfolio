@@ -64,7 +64,7 @@ export function AdminSidebar({
                         'focus-visible:outline-ring focus-visible:outline-2 focus-visible:outline-offset-2',
                         collapsed && 'justify-center px-0',
                         isActive
-                          ? 'bg-accent-soft text-accent-foreground dark:text-foreground font-medium'
+                          ? 'bg-accent-soft text-accent-soft-foreground font-medium'
                           : 'text-muted-foreground hover:bg-surface-2 hover:text-foreground',
                       )}
                     >

@@ -41,7 +41,7 @@ export async function EducationList({ items }: { items: EducationItem[] }) {
             <Card className="h-full gap-3 p-6">
               <span
                 aria-hidden="true"
-                className="bg-accent-soft text-accent-foreground border-accent/20 grid size-11 place-items-center rounded-xl border"
+                className="bg-accent-soft text-accent-soft-foreground border-accent/20 grid size-11 place-items-center rounded-xl border"
               >
                 <GraduationCap className="size-5" />
               </span>

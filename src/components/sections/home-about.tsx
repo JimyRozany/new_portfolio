@@ -66,7 +66,7 @@ export async function HomeAbout({ settings }: { settings: SiteSettings }) {
                   <Card className="h-full gap-3 p-5">
                     <span
                       aria-hidden="true"
-                      className="bg-accent-soft text-accent-foreground border-accent/20 grid size-10 place-items-center rounded-lg border"
+                      className="bg-accent-soft text-accent-soft-foreground border-accent/20 grid size-10 place-items-center rounded-lg border"
                     >
                       <highlight.icon className="size-4.5" />
                     </span>

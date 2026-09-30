@@ -88,7 +88,7 @@ export async function ExperienceTimeline({ items }: { items: ExperienceItem[] })
               ) : null}
 
               {index === 0 && item.current ? (
-                <span className="text-caption text-accent-foreground bg-accent-soft border-accent/30 inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1">
+                <span className="text-caption text-accent-soft-foreground bg-accent-soft border-accent/30 inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1">
                   <span className="bg-accent size-1.5 animate-pulse rounded-full" />
                   {t('present')}
                 </span>

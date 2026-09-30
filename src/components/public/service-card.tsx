@@ -22,7 +22,7 @@ export function ServiceCard({ service }: { service: ServiceItem }) {
       <Card className="group hover:border-border-strong h-full gap-5 p-6 transition-[border-color,box-shadow] duration-300 hover:shadow-md">
         <span
           aria-hidden="true"
-          className="bg-accent-soft text-accent-foreground border-accent/20 grid size-12 place-items-center rounded-xl border transition-transform duration-300 group-hover:scale-105"
+          className="bg-accent-soft text-accent-soft-foreground border-accent/20 grid size-12 place-items-center rounded-xl border transition-transform duration-300 group-hover:scale-105"
         >
           <ServiceIcon name={service.icon} className="size-5" />
         </span>

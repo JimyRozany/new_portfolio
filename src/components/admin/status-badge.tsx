@@ -16,7 +16,7 @@ const STYLES: Record<string, string> = {
   DRAFT: 'bg-warning-soft text-warning-foreground',
   ARCHIVED: 'bg-surface-3 text-muted-foreground',
   // `ContactMessage.status`
-  NEW: 'bg-accent-soft text-accent-foreground',
+  NEW: 'bg-accent-soft text-accent-soft-foreground',
   READ: 'bg-surface-3 text-muted-foreground',
   REPLIED: 'bg-info-soft text-info-foreground',
   SPAM: 'bg-danger-soft text-danger-foreground',

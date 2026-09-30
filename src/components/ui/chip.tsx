@@ -18,7 +18,7 @@ const chipVariants = cva(
           'border-border bg-surface text-muted-foreground hover:border-border-strong hover:text-foreground',
         solid: 'border-transparent bg-foreground text-background',
         soft: 'border-transparent bg-surface-2 text-muted-foreground hover:bg-surface-3 hover:text-foreground',
-        accent: 'border-accent/30 bg-accent-soft text-accent-foreground',
+        accent: 'border-accent/30 bg-accent-soft text-accent-soft-foreground',
       },
       size: {
         sm: 'px-2.5 py-1 text-caption',

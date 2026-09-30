@@ -7,7 +7,21 @@
 
    Colour is authored in OKLCH for perceptually even contrast across themes.
    The palette is intentionally near-monochrome with ONE signature accent
-   ("volt") so the design reads premium instead of noisy.
+   ("iris") so the design reads premium instead of noisy.
+
+   Two rules keep the text legible, and both were verified numerically rather
+   than by eye:
+
+   1. A tinted background and its text are SEPARATE tokens. `--accent-soft` is
+      a pale wash and needs a deep text (`--accent-soft-foreground`); reusing
+      `--accent-foreground` for both meant one token had to serve two opposite
+      jobs, and text on a tint collapsed to 1.3:1 in the dark theme. The status
+      tones already had their own soft-text token; accent was the exception.
+
+   2. Borders that identify a control (`--input`, `--border-strong`) clear the
+      3:1 non-text minimum. `--border` stays a hairline, because a decorative
+      divider is exempt from that rule and a 3:1 rule on every divider would
+      make the page look ruled.
    ========================================================================== */
 
 @import 'tailwindcss';
@@ -22,30 +36,32 @@
 :root {
   color-scheme: light;
 
-  /* Core surfaces — warm paper neutrals */
-  --background: oklch(0.9852 0.0028 106);
+  /* Core surfaces — warm cream neutrals */
+  --background: oklch(0.9852 0.0055 75);
   --surface: oklch(1 0 0);
-  --surface-2: oklch(0.9724 0.0038 106);
-  --surface-3: oklch(0.9512 0.0048 106);
+  --surface-2: oklch(0.9724 0.0065 75);
+  --surface-3: oklch(0.9512 0.0085 75);
 
   /* Text */
-  --foreground: oklch(0.1878 0.0056 106);
-  --muted: oklch(0.5384 0.0082 106);
-  --muted-foreground: oklch(0.4702 0.0088 106);
-  --subtle-foreground: oklch(0.6042 0.0086 106);
+  --foreground: oklch(0.1878 0.006 75);
+  --muted: oklch(0.5 0.01 75);
+  --muted-foreground: oklch(0.4702 0.01 75);
+  --subtle-foreground: oklch(0.5 0.01 75);
 
-  /* Lines */
-  --border: oklch(0.9016 0.0058 106);
-  --border-strong: oklch(0.8362 0.0072 106);
-  --input: oklch(0.9016 0.0058 106);
-  --ring: oklch(0.1878 0.0056 106);
+  /* Lines — `--input` and `--border-strong` identify controls (3:1);
+     `--border` is a decorative hairline and stays quiet. */
+  --border: oklch(0.9016 0.008 75);
+  --border-strong: oklch(0.696 0.01 75);
+  --input: oklch(0.658 0.01 75);
+  --ring: oklch(0.42 0.14 275);
 
-  /* Signature accent — "volt" */
-  --accent: oklch(0.8122 0.2046 122.4);
-  --accent-hover: oklch(0.7568 0.2112 122.4);
-  --accent-foreground: oklch(0.2236 0.0634 122.4);
-  --accent-soft: oklch(0.9412 0.0684 122.4);
-  --accent-ring: oklch(0.8122 0.2046 122.4 / 0.45);
+  /* Signature accent — "iris" */
+  --accent: oklch(0.556 0.19 275);
+  --accent-hover: oklch(0.511 0.19 275);
+  --accent-foreground: oklch(0.995 0.005 275);
+  --accent-soft: oklch(0.95 0.032 275);
+  --accent-soft-foreground: oklch(0.36 0.115 275);
+  --accent-ring: oklch(0.556 0.19 275 / 0.45);
 
   /* Status */
   --success: oklch(0.6402 0.1522 152.6);
@@ -62,41 +78,42 @@
   --info-foreground: oklch(0.3312 0.1092 246.2);
 
   /* Overlays */
-  --overlay: oklch(0.1878 0.0056 106 / 0.42);
+  --overlay: oklch(0.1878 0.006 75 / 0.42);
 
   /* Ambient light — used for the subtle background glow. */
-  --glow-a: oklch(0.8122 0.2046 122.4 / 0.16);
-  --glow-b: oklch(0.7412 0.1042 246.2 / 0.12);
-  --grid-line: oklch(0.1878 0.0056 106 / 0.045);
+  --glow-a: oklch(0.556 0.19 275 / 0.16);
+  --glow-b: oklch(0.52 0.15 320 / 0.1);
+  --grid-line: oklch(0.1878 0.006 75 / 0.045);
 }
 
 .dark {
   color-scheme: dark;
 
   /* Core surfaces — deep, slightly warm charcoal (not a pure inversion). */
-  --background: oklch(0.1636 0.0042 106);
-  --surface: oklch(0.1962 0.0048 106);
-  --surface-2: oklch(0.2242 0.0054 106);
-  --surface-3: oklch(0.2624 0.0062 106);
+  --background: oklch(0.1636 0.0042 75);
+  --surface: oklch(0.1962 0.0048 75);
+  --surface-2: oklch(0.2242 0.0054 75);
+  --surface-3: oklch(0.2624 0.0062 75);
 
   /* Text */
-  --foreground: oklch(0.9662 0.0034 106);
-  --muted: oklch(0.5814 0.0062 106);
-  --muted-foreground: oklch(0.6784 0.0068 106);
-  --subtle-foreground: oklch(0.5612 0.0062 106);
+  --foreground: oklch(0.9662 0.0034 75);
+  --muted: oklch(0.5814 0.0062 75);
+  --muted-foreground: oklch(0.6784 0.0068 75);
+  --subtle-foreground: oklch(0.74 0.007 75);
 
   /* Lines */
-  --border: oklch(0.2784 0.0062 106);
-  --border-strong: oklch(0.3712 0.0072 106);
-  --input: oklch(0.3024 0.0064 106);
-  --ring: oklch(0.8462 0.1842 122.4);
+  --border: oklch(0.2784 0.0062 75);
+  --border-strong: oklch(0.455 0.0072 75);
+  --input: oklch(0.497 0.008 75);
+  --ring: oklch(0.74 0.155 275);
 
-  /* Signature accent — "volt" (brighter at night, same hue family) */
-  --accent: oklch(0.8742 0.2124 122.4);
-  --accent-hover: oklch(0.9142 0.1842 122.4);
-  --accent-foreground: oklch(0.2012 0.0624 122.4);
-  --accent-soft: oklch(0.2964 0.0712 122.4);
-  --accent-ring: oklch(0.8742 0.2124 122.4 / 0.5);
+  /* Signature accent — "iris" (brighter at night, same hue family) */
+  --accent: oklch(0.74 0.155 275);
+  --accent-hover: oklch(0.82 0.13 275);
+  --accent-foreground: oklch(0.17 0.045 275);
+  --accent-soft: oklch(0.31 0.07 275);
+  --accent-soft-foreground: oklch(0.9 0.06 275);
+  --accent-ring: oklch(0.74 0.155 275 / 0.5);
 
   /* Status */
   --success: oklch(0.7216 0.1622 152.6);
@@ -105,7 +122,7 @@
   --warning: oklch(0.8216 0.1482 78.4);
   --warning-soft: oklch(0.3042 0.0624 78.4);
   --warning-foreground: oklch(0.9012 0.1084 82.4);
-  --danger: oklch(0.6716 0.1918 25.6);
+  --danger: oklch(0.565 0.19 27);
   --danger-soft: oklch(0.3024 0.0842 25.6);
   --danger-foreground: oklch(0.8812 0.0924 25.6);
   --info: oklch(0.6912 0.1482 246.2);
@@ -113,12 +130,12 @@
   --info-foreground: oklch(0.8712 0.1024 246.2);
 
   /* Overlays */
-  --overlay: oklch(0.0874 0.0038 106 / 0.72);
+  --overlay: oklch(0.0874 0.0038 75 / 0.72);
 
   /* Ambient light */
-  --glow-a: oklch(0.8742 0.2124 122.4 / 0.14);
-  --glow-b: oklch(0.6412 0.1342 246.2 / 0.16);
-  --grid-line: oklch(0.9662 0.0034 106 / 0.05);
+  --glow-a: oklch(0.74 0.155 275 / 0.16);
+  --glow-b: oklch(0.52 0.15 320 / 0.14);
+  --grid-line: oklch(0.9662 0.0034 75 / 0.05);
 }
 
 /* --------------------------------------------------------------------------
@@ -143,6 +160,7 @@
   --color-accent-hover: var(--accent-hover);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-foreground: var(--accent-soft-foreground);
   --color-success: var(--success);
   --color-success-soft: var(--success-soft);
   --color-success-foreground: var(--success-foreground);
