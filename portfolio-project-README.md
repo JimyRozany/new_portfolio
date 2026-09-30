@@ -2246,6 +2246,19 @@ Notes:
   Open Graph / Twitter cards / canonical per locale, and `src/app/sitemap.ts` and
   `src/app/robots.ts` are generated from the live project table with `hreflang`
   alternates. JSON-LD structured data is the only item still open.
+- **Phase 4** --- the dashboard shell, navigation and read-only overview are
+  done, and **projects** now have a full CRUD slice (list with URL-driven search,
+  status and category filters and pagination; create and edit forms; delete behind
+  a confirmation). That slice is the template for the remaining collections
+  (skills, experience, education, services, testimonials, social links, messages,
+  media, settings), which have their read queries in place and still need their
+  mutations and screens.
+- **Admin cache invalidation** --- the admin read layer is deliberately uncached
+  but the public query layer is not, so a project write calls `updateTag` (data,
+  immediate) *and* `revalidatePath` (rendered routes, since the public pages are
+  static). Skipping the `revalidatePath` leaves the site showing markup built
+  before the edit --- which is why both are called, rather than the one that looks
+  sufficient.
 - **Database engine** --- MySQL 8 rather than the PostgreSQL named in the
   original brief, because MySQL is what the development machine runs. Every
   construct used in the schema is portable, so switching is cheap.

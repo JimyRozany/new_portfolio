@@ -1,623 +1,679 @@
 {
-  "common": {
-    "appName": "Mohamed Gamal",
-    "loading": "Loading",
-    "loadingMore": "Loading more",
-    "error": "Something went wrong",
-    "retry": "Try again",
-    "close": "Close",
-    "cancel": "Cancel",
-    "save": "Save",
-    "saving": "Saving",
-    "saved": "Saved",
-    "delete": "Delete",
-    "edit": "Edit",
-    "create": "Create",
-    "update": "Update",
-    "search": "Search",
-    "clear": "Clear",
-    "clearFilters": "Clear filters",
-    "back": "Back",
-    "next": "Next",
-    "previous": "Previous",
-    "readMore": "Read more",
-    "showMore": "Show more",
-    "showLess": "Show less",
-    "required": "Required",
-    "optional": "Optional",
-    "yes": "Yes",
-    "no": "No",
-    "all": "All",
-    "none": "None",
-    "confirm": "Confirm",
-    "copy": "Copy link",
-    "copied": "Copied",
-    "comingSoon": "Coming soon",
-    "new": "New",
-    "actions": "Actions",
-    "status": "Status",
-    "active": "Active",
-    "inactive": "Inactive",
-    "sortOrder": "Sort order",
-    "publish": "Publish",
-    "unpublish": "Unpublish",
-    "and": "and",
-    "or": "or"
-  },
-  "nav": {
-    "label": "Main navigation",
-    "home": "Home",
-    "about": "About",
-    "projects": "Projects",
-    "experience": "Experience",
-    "services": "Services",
-    "contact": "Contact",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu",
-    "viewResume": "Résumé",
-    "skipToContent": "Skip to main content"
-  },
-  "theme": {
-    "label": "Theme",
-    "light": "Light",
-    "dark": "Dark",
-    "system": "System",
-    "toggle": "Switch theme"
-  },
-  "language": {
-    "label": "Language",
-    "switchTo": "Switch to {language}",
-    "current": "Current language: {language}"
-  },
-  "home": {
-    "hero": {
-      "eyebrow": "Available for new projects",
-      "greeting": "Hello, I'm",
-      "title": "I build fast, dependable products for the web",
-      "highlightedWord": "dependable",
-      "subtitle": "Full Stack Developer with 2+ years of hands-on experience shipping production systems with Laravel, React and Next.js — from database design and REST APIs to fast, accessible interfaces.",
-      "primaryCta": "View projects",
-      "secondaryCta": "Get in touch",
-      "scrollHint": "Scroll to explore",
-      "stats": {
-        "yearsExperience": "Years of experience",
-        "projectsShipped": "Projects shipped",
-        "stack": "Core stack"
-      }
-    },
-    "marquee": {
-      "label": "Technologies I work with"
-    },
-    "about": {
-      "eyebrow": "About me",
-      "title": "Engineering that survives real-world requirements",
-      "description": "I work end to end: modelling the database, exposing a clean API, then building an interface people actually enjoy using. I care about maintainable codebases, sensible performance work, and shipping without drama.",
-      "downloadResume": "Download résumé",
-      "viewProjects": "View projects",
-      "locationLabel": "Location",
-      "experienceLabel": "Experience",
-      "focusLabel": "Current focus",
-      "focusValue": "Laravel · React · Next.js",
-      "highlights": {
-        "title": "What I bring",
-        "fullStack": "Full-stack delivery",
-        "fullStackDescription": "From relational schema design to pixel-polished React interfaces.",
-        "performance": "Performance first",
-        "performanceDescription": "Bundle budgets, image optimisation, caching and query tuning.",
-        "quality": "Quality built in",
-        "qualityDescription": "Typed code, validation on both sides, tests around the critical paths.",
-        "collaboration": "Team player",
-        "collaborationDescription": "Comfortable in agile teams and in large legacy codebases."
-      }
-    },
-    "skills": {
-      "eyebrow": "Toolkit",
-      "title": "The stack I reach for",
-      "description": "Chosen for shipping velocity and long-term maintainability, not for trend-chasing."
-    },
-    "projects": {
-      "eyebrow": "Selected work",
-      "title": "Projects I'm proud of",
-      "description": "A selection of systems I designed, built and shipped to production.",
-      "viewAll": "View all projects"
-    },
-    "experience": {
-      "eyebrow": "Career",
-      "title": "Where I've worked",
-      "description": "Product teams and platforms that taught me how real software gets built and maintained.",
-      "viewAll": "View full timeline"
-    },
-    "education": {
-      "eyebrow": "Background",
-      "title": "Education"
-    },
-    "services": {
-      "eyebrow": "Services",
-      "title": "How I can help",
-      "description": "Engagements I take on, from a focused feature to a complete system."
-    },
-    "testimonials": {
-      "eyebrow": "Testimonials",
-      "title": "What people say",
-      "description": "Feedback from teammates and clients I worked with."
-    },
-    "cta": {
-      "title": "Have a project in mind?",
-      "description": "Tell me what you're building and I'll reply with an honest take on scope, stack and timeline.",
-      "primary": "Start a conversation",
-      "secondary": "Download résumé"
-    },
-    "contact": {
-      "eyebrow": "Contact",
-      "title": "Let's build something",
-      "description": "The fastest way to reach me. I read every message."
-    }
-  },
-  "about": {
-    "meta": {
-      "title": "About",
-      "description": "Meet Mohamed Gamal, a Full Stack Developer working with Laravel, React and Next.js."
-    },
-    "eyebrow": "About",
-    "title": "A developer who owns the whole stack",
-    "summary": "I build production-grade systems end to end — schema, API and interface.",
-    "philosophy": {
-      "title": "How I work",
-      "items": {
-        "understand": "Understand the domain before writing code",
-        "simple": "Prefer the simplest architecture that still scales",
-        "measure": "Measure performance instead of guessing",
-        "handover": "Leave the codebase better documented than I found it"
-      }
-    },
-    "downloadResume": "Download résumé",
-    "contactMe": "Get in touch"
-  },
-  "skills": {
-    "levelLabel": "Proficiency",
-    "uncategorised": "Other"
-  },
-  "projects": {
-    "meta": {
-      "title": "Projects",
-      "description": "Selected work — web apps, e-commerce platforms, ERP systems and APIs."
-    },
-    "eyebrow": "Portfolio",
-    "title": "Projects",
-    "description": "Systems I designed, built and shipped. Filter by category or search by technology.",
-    "searchPlaceholder": "Search by title or technology…",
-    "resultsCount": "{count, plural, =0 {No projects} one {# project} other {# projects}}",
-    "filters": {
-      "label": "Filter by category",
-      "all": "All",
-      "clear": "Clear filters"
-    },
-    "empty": {
-      "title": "No projects yet",
-      "description": "Projects published from the dashboard will appear here."
-    },
-    "noResults": {
-      "title": "No matching projects",
-      "description": "Try a different search term or clear the filters."
-    },
-    "card": {
-      "liveDemo": "Live demo",
-      "sourceCode": "Source code",
-      "viewDetails": "View details"
-    },
-    "status": {
-      "completed": "Completed",
-      "in_progress": "In progress",
-      "archived": "Archived"
-    },
-    "categories": {
-      "web_app": "Web app",
-      "ecommerce": "E-commerce",
-      "erp": "ERP",
-      "saas": "SaaS",
-      "api": "API",
-      "mobile": "Mobile",
-      "other": "Other"
-    },
-    "detail": {
-      "overview": "Overview",
-      "gallery": "Gallery",
-      "technologies": "Technologies",
-      "features": "Key features",
-      "challenges": "Challenges",
-      "solution": "Solution",
-      "results": "Results",
-      "backToProjects": "Back to projects",
-      "nextProject": "Next project",
-      "relatedProjects": "Related projects",
-      "shareProject": "Share this project",
-      "projectNotFound": "This project could not be found."
-    }
-  },
-  "experience": {
-    "meta": {
-      "title": "Experience",
-      "description": "Roles and the products I worked on as a Full Stack Developer."
-    },
-    "eyebrow": "Career",
-    "title": "Experience",
-    "description": "A timeline of the teams I've been part of and the systems I've helped build.",
-    "present": "Present",
-    "highlights": "Highlights",
-    "technologies": "Technologies",
-    "empty": {
-      "title": "No experience entries yet",
-      "description": "Experience entries added from the dashboard will show up here."
-    }
-  },
-  "education": {
-    "meta": {
-      "title": "Education",
-      "description": "University degrees and professional background."
-    },
-    "eyebrow": "Education",
-    "title": "Education & background",
-    "description": "Degrees and coursework that shaped how I approach engineering.",
-    "present": "Present",
-    "empty": {
-      "title": "No education entries yet",
-      "description": "Education entries added from the dashboard will show up here."
-    }
-  },
-  "services": {
-    "meta": {
-      "title": "Services",
-      "description": "Web development, API engineering, ERP systems and technical consulting."
-    },
-    "eyebrow": "Services",
-    "title": "What I can build for you",
-    "description": "Clear scopes, realistic estimates and code you can maintain afterwards.",
-    "includes": "What's included",
-    "discuss": "Discuss a project",
-    "empty": {
-      "title": "No services yet",
-      "description": "Services added from the dashboard will show up here."
-    }
-  },
-  "testimonials": {
-    "meta": {
-      "title": "Testimonials",
-      "description": "What clients and teams say about working with me."
-    },
-    "eyebrow": "Testimonials",
-    "title": "Kind words from the people I worked with",
-    "description": "Feedback from client projects and long-running collaborations.",
-    "ratingLabel": "Rated {rating} out of 5",
-    "empty": {
-      "title": "No testimonials yet",
-      "description": "Testimonials published from the dashboard will appear here."
-    }
-  },
-  "contact": {
-    "meta": {
-      "title": "Contact",
-      "description": "Get in touch about a project, a role or a technical question."
-    },
-    "eyebrow": "Contact",
-    "title": "Let's talk",
-    "description": "Send a message and I'll get back to you as soon as I can.",
-    "detailsTitle": "Contact details",
-    "emailLabel": "Email",
-    "phoneLabel": "Phone",
-    "locationLabel": "Location",
-    "socialTitle": "Elsewhere",
-    "form": {
-      "title": "Send a message",
-      "name": "Name",
-      "namePlaceholder": "Jane Doe",
-      "email": "Email",
-      "emailPlaceholder": "jane@company.com",
-      "subject": "Subject",
-      "subjectPlaceholder": "What is this about?",
-      "message": "Message",
-      "messagePlaceholder": "Tell me a little about your project, timeline and budget…",
-      "submit": "Send message",
-      "submitting": "Sending…",
-      "privacyNote": "Your details are only used to reply to you. No newsletters, ever.",
-      "errors": {
-        "nameMin": "Please enter at least {min} characters.",
-        "email": "Please enter a valid email address.",
-        "subjectMin": "Please enter at least {min} characters.",
-        "messageMin": "Please enter at least {min} characters.",
-        "messageMax": "Please keep your message under {max} characters.",
-        "rateLimit": "Too many messages. Please try again in a few minutes.",
-        "generic": "We couldn't send your message. Please try again."
-      },
-      "success": {
-        "title": "Message sent",
-        "description": "Thanks for reaching out — I'll reply shortly.",
-        "sendAnother": "Send another message"
-      },
-      "failure": {
-        "title": "Message not sent",
-        "description": "Something went wrong on our side. Please try again."
-      }
-    }
-  },
-  "footer": {
-    "description": "Full Stack Developer building dependable web products with Laravel, React and Next.js.",
-    "navigation": "Navigation",
-    "connect": "Connect",
-    "contact": "Contact",
-    "copyright": "© {year} {name}. All rights reserved.",
-    "builtWith": "Built with Next.js, Tailwind CSS and Prisma.",
-    "backToTop": "Back to top",
-    "admin": "Admin"
-  },
-  "metadata": {
-    "home": {
-      "title": "Mohamed Gamal — Full Stack Developer",
-      "description": "Full Stack Developer with 2+ years of experience building production-grade systems using Laravel, React.js and Next.js."
-    },
-    "keywords": "Mohamed Gamal, Full Stack Developer, Laravel, React, Next.js, PHP, JavaScript, Portfolio"
-  },
-  "errors": {
-    "notFound": {
-      "code": "404",
-      "title": "Page not found",
-      "description": "The page you're looking for doesn't exist or has been moved."
-    },
-    "generic": {
-      "code": "Error",
-      "title": "Something went wrong",
-      "description": "An unexpected error occurred. Please try again in a moment."
-    },
-    "backHome": "Back to home"
-  },
-  "validation": {
-    "required": "This field is required.",
-    "email": "Enter a valid email address.",
-    "url": "Enter a valid URL.",
-    "minLength": "Must be at least {min} characters.",
-    "maxLength": "Must be at most {max} characters.",
-    "number": "Enter a valid number.",
-    "positive": "Enter a positive number.",
-    "invalid": "Invalid value."
-  },
-  "admin": {
-    "brand": {
-      "name": "Dashboard",
-      "short": "AD"
-    },
-    "login": {
-      "title": "Sign in to the dashboard",
-      "subtitle": "Manage every part of the portfolio from one place.",
-      "email": "Email address",
-      "emailPlaceholder": "you@example.com",
-      "password": "Password",
-      "passwordPlaceholder": "Your password",
-      "submit": "Sign in",
-      "submitting": "Signing in…",
-      "showPassword": "Show password",
-      "hidePassword": "Hide password",
-      "backToSite": "Back to the website",
-      "errors": {
-        "title": "Could not sign in",
-        "invalidCredentials": "That email and password combination is not correct.",
-        "rateLimited": "Too many attempts. Please wait 15 minutes and try again.",
-        "invalid": "Please check the highlighted fields."
-      },
-      "aside": {
-        "eyebrow": "Dashboard",
-        "headline": "Everything the portfolio says is editable from here.",
-        "body": "Projects, skills, experience, services, messages and media — one content source, no code changes."
-      }
+    "common": {
+        "appName": "Mohamed Gamal",
+        "loading": "Loading",
+        "loadingMore": "Loading more",
+        "error": "Something went wrong",
+        "retry": "Try again",
+        "close": "Close",
+        "cancel": "Cancel",
+        "save": "Save",
+        "saving": "Saving",
+        "saved": "Saved",
+        "delete": "Delete",
+        "edit": "Edit",
+        "create": "Create",
+        "update": "Update",
+        "search": "Search",
+        "clear": "Clear",
+        "clearFilters": "Clear filters",
+        "back": "Back",
+        "next": "Next",
+        "previous": "Previous",
+        "readMore": "Read more",
+        "showMore": "Show more",
+        "showLess": "Show less",
+        "required": "Required",
+        "optional": "Optional",
+        "yes": "Yes",
+        "no": "No",
+        "all": "All",
+        "none": "None",
+        "confirm": "Confirm",
+        "copy": "Copy link",
+        "copied": "Copied",
+        "comingSoon": "Coming soon",
+        "new": "New",
+        "actions": "Actions",
+        "status": "Status",
+        "active": "Active",
+        "inactive": "Inactive",
+        "sortOrder": "Sort order",
+        "publish": "Publish",
+        "unpublish": "Unpublish",
+        "and": "and",
+        "or": "or"
     },
     "nav": {
-      "label": "Dashboard",
-      "dashboard": "Overview",
-      "content": "Content",
-      "hero": "Hero",
-      "about": "About",
-      "projects": "Projects",
-      "skills": "Skills",
-      "experience": "Experience",
-      "education": "Education",
-      "services": "Services",
-      "testimonials": "Testimonials",
-      "socialLinks": "Social Links",
-      "messages": "Messages",
-      "media": "Media",
-      "settings": "Settings",
-      "general": "General",
-      "seo": "SEO",
-      "language": "Language",
-      "appearance": "Appearance",
-      "account": "Account",
-      "signOut": "Sign out",
-      "viewSite": "View site",
-      "collapse": "Collapse sidebar",
-      "expand": "Expand sidebar"
-    },
-    "dashboard": {
-      "title": "Overview",
-      "subtitle": "A snapshot of what is published and what needs attention.",
-      "cards": {
+        "label": "Main navigation",
+        "home": "Home",
+        "about": "About",
         "projects": "Projects",
         "experience": "Experience",
-        "skills": "Skills",
         "services": "Services",
-        "testimonials": "Testimonials",
-        "messages": "Messages",
-        "media": "Media files",
-        "education": "Education"
-      },
-      "published": "published",
-      "drafts": "drafts",
-      "unread": "unread",
-      "quickActions": "Quick actions",
-      "addProject": "New project",
-      "addMessageView": "Read messages",
-      "editSettings": "Edit settings",
-      "recentProjects": "Recently updated projects",
-      "recentMessages": "Latest messages",
-      "viewAll": "View all",
-      "noProjects": "No projects yet",
-      "noMessages": "No messages yet",
-      "setupTitle": "Finish setting up",
-      "setupDescription": "Your password is the only thing standing between the public and this dashboard.",
-      "setupCta": "Set a password",
-      "featured": "featured",
-      "active": "active",
-      "noProjectsDescription": "Published and draft projects will appear here.",
-      "noMessagesDescription": "Messages sent from the contact form will arrive here.",
-      "allRead": "All read"
+        "contact": "Contact",
+        "openMenu": "Open menu",
+        "closeMenu": "Close menu",
+        "viewResume": "Résumé",
+        "skipToContent": "Skip to main content"
     },
-    "table": {
-      "title": "Title",
-      "name": "Name",
-      "company": "Company",
-      "institution": "Institution",
-      "category": "Category",
-      "status": "Status",
-      "featured": "Featured",
-      "sortOrder": "Order",
-      "level": "Level",
-      "rating": "Rating",
-      "platform": "Platform",
-      "url": "URL",
-      "email": "Email",
-      "subject": "Subject",
-      "date": "Date",
-      "actions": "Actions",
-      "from": "From",
-      "results": "results",
-      "showing": "Showing",
-      "of": "of",
-      "previous": "Previous page",
-      "next": "Next page",
-      "page": "Page",
-      "selectAll": "Select all"
+    "theme": {
+        "label": "Theme",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System",
+        "toggle": "Switch theme"
     },
-    "filters": {
-      "label": "Filters",
-      "all": "All",
-      "published": "Published",
-      "draft": "Draft",
-      "archived": "Archived",
-      "active": "Active",
-      "inactive": "Inactive",
-      "new": "New",
-      "read": "Read",
-      "replied": "Replied",
-      "spam": "Spam",
-      "search": "Search…"
+    "language": {
+        "label": "Language",
+        "switchTo": "Switch to {language}",
+        "current": "Current language: {language}"
     },
-    "form": {
-      "new": "New",
-      "edit": "Edit",
-      "create": "Create",
-      "save": "Save changes",
-      "saving": "Saving…",
-      "saved": "Saved",
-      "basicInformation": "Basic information",
-      "englishContent": "English content",
-      "arabicContent": "Arabic content",
-      "projectDetails": "Project details",
-      "publishing": "Publishing",
-      "media": "Media",
-      "links": "Links",
-      "dates": "Dates",
-      "preview": "Preview",
-      "deleteConfirmTitle": "Delete this {entity}?",
-      "deleteConfirmDescription": "This cannot be undone.",
-      "fieldRequired": "This field is required",
-      "slugHint": "Used in the page URL. Leave empty to generate from the English title.",
-      "autoSlug": "Auto-generate",
-      "sortOrderHint": "Lower numbers appear first.",
-      "addItem": "Add item",
-      "removeItem": "Remove",
-      "notes": "Internal notes"
+    "home": {
+        "hero": {
+            "eyebrow": "Available for new projects",
+            "greeting": "Hello, I'm",
+            "title": "I build fast, dependable products for the web",
+            "highlightedWord": "dependable",
+            "subtitle": "Full Stack Developer with 2+ years of hands-on experience shipping production systems with Laravel, React and Next.js — from database design and REST APIs to fast, accessible interfaces.",
+            "primaryCta": "View projects",
+            "secondaryCta": "Get in touch",
+            "scrollHint": "Scroll to explore",
+            "stats": {
+                "yearsExperience": "Years of experience",
+                "projectsShipped": "Projects shipped",
+                "stack": "Core stack"
+            }
+        },
+        "marquee": {
+            "label": "Technologies I work with"
+        },
+        "about": {
+            "eyebrow": "About me",
+            "title": "Engineering that survives real-world requirements",
+            "description": "I work end to end: modelling the database, exposing a clean API, then building an interface people actually enjoy using. I care about maintainable codebases, sensible performance work, and shipping without drama.",
+            "downloadResume": "Download résumé",
+            "viewProjects": "View projects",
+            "locationLabel": "Location",
+            "experienceLabel": "Experience",
+            "focusLabel": "Current focus",
+            "focusValue": "Laravel · React · Next.js",
+            "highlights": {
+                "title": "What I bring",
+                "fullStack": "Full-stack delivery",
+                "fullStackDescription": "From relational schema design to pixel-polished React interfaces.",
+                "performance": "Performance first",
+                "performanceDescription": "Bundle budgets, image optimisation, caching and query tuning.",
+                "quality": "Quality built in",
+                "qualityDescription": "Typed code, validation on both sides, tests around the critical paths.",
+                "collaboration": "Team player",
+                "collaborationDescription": "Comfortable in agile teams and in large legacy codebases."
+            }
+        },
+        "skills": {
+            "eyebrow": "Toolkit",
+            "title": "The stack I reach for",
+            "description": "Chosen for shipping velocity and long-term maintainability, not for trend-chasing."
+        },
+        "projects": {
+            "eyebrow": "Selected work",
+            "title": "Projects I'm proud of",
+            "description": "A selection of systems I designed, built and shipped to production.",
+            "viewAll": "View all projects"
+        },
+        "experience": {
+            "eyebrow": "Career",
+            "title": "Where I've worked",
+            "description": "Product teams and platforms that taught me how real software gets built and maintained.",
+            "viewAll": "View full timeline"
+        },
+        "education": {
+            "eyebrow": "Background",
+            "title": "Education"
+        },
+        "services": {
+            "eyebrow": "Services",
+            "title": "How I can help",
+            "description": "Engagements I take on, from a focused feature to a complete system."
+        },
+        "testimonials": {
+            "eyebrow": "Testimonials",
+            "title": "What people say",
+            "description": "Feedback from teammates and clients I worked with."
+        },
+        "cta": {
+            "title": "Have a project in mind?",
+            "description": "Tell me what you're building and I'll reply with an honest take on scope, stack and timeline.",
+            "primary": "Start a conversation",
+            "secondary": "Download résumé"
+        },
+        "contact": {
+            "eyebrow": "Contact",
+            "title": "Let's build something",
+            "description": "The fastest way to reach me. I read every message."
+        }
     },
-    "messages": {
-      "title": "Messages",
-      "subtitle": "Enquiries sent from the public contact form.",
-      "empty": {
-        "title": "No messages",
-        "description": "Messages from the contact form land here."
-      },
-      "markRead": "Mark as read",
-      "markUnread": "Mark as unread",
-      "markReplied": "Mark as replied",
-      "markSpam": "Mark as spam",
-      "reply": "Reply",
-      "from": "From",
-      "received": "Received"
+    "about": {
+        "meta": {
+            "title": "About",
+            "description": "Meet Mohamed Gamal, a Full Stack Developer working with Laravel, React and Next.js."
+        },
+        "eyebrow": "About",
+        "title": "A developer who owns the whole stack",
+        "summary": "I build production-grade systems end to end — schema, API and interface.",
+        "philosophy": {
+            "title": "How I work",
+            "items": {
+                "understand": "Understand the domain before writing code",
+                "simple": "Prefer the simplest architecture that still scales",
+                "measure": "Measure performance instead of guessing",
+                "handover": "Leave the codebase better documented than I found it"
+            }
+        },
+        "downloadResume": "Download résumé",
+        "contactMe": "Get in touch"
     },
-    "media": {
-      "title": "Media library",
-      "subtitle": "Every uploaded image, ready to use anywhere in the portfolio.",
-      "upload": "Upload image",
-      "uploading": "Uploading…",
-      "dropHint": "Drop an image here, or click to choose a file",
-      "allowedTypes": "PNG, JPG, WEBP or SVG up to 5 MB",
-      "copyPath": "Copy path",
-      "copied": "Path copied",
-      "use": "Use this image",
-      "altText": "Alternative text",
-      "altHint": "Describe the image for screen readers and search engines.",
-      "empty": {
-        "title": "No media yet",
-        "description": "Uploaded images appear here."
-      },
-      "usedIn": "In use"
+    "skills": {
+        "levelLabel": "Proficiency",
+        "uncategorised": "Other"
     },
-    "settings": {
-      "title": "Settings",
-      "subtitle": "Content that appears across the whole site.",
-      "general": "General",
-      "profile": "Profile",
-      "contact": "Contact details",
-      "features": "Feature toggles",
-      "showServices": "Show the services section",
-      "showServicesHint": "Hide it on the home page and the services page.",
-      "showTestimonials": "Show the testimonials section",
-      "showTestimonialsHint": "Only displayed once a testimonial is marked as featured.",
-      "seo": "SEO",
-      "metaDescription": "Default meta description",
-      "ogImage": "Social share image",
-      "language": "Language",
-      "defaultLocale": "Default language",
-      "availableLocales": "Available languages",
-      "localeHint": "New visitors are sent to the default language. Adding a language requires adding a message catalogue.",
-      "appearance": "Appearance",
-      "theme": "Theme",
-      "themeHint": "Visitors can still override this in their browser.",
-      "dangerZone": "Danger zone",
-      "deleteEverything": "Delete all content",
-      "deleteEverythingHint": "Removes every project, skill, message and media record. Cannot be undone."
+    "projects": {
+        "meta": {
+            "title": "Projects",
+            "description": "Selected work — web apps, e-commerce platforms, ERP systems and APIs."
+        },
+        "eyebrow": "Portfolio",
+        "title": "Projects",
+        "description": "Systems I designed, built and shipped. Filter by category or search by technology.",
+        "searchPlaceholder": "Search by title or technology…",
+        "resultsCount": "{count, plural, =0 {No projects} one {# project} other {# projects}}",
+        "filters": {
+            "label": "Filter by category",
+            "all": "All",
+            "clear": "Clear filters",
+            "sort": "Sort by",
+            "sortNewest": "Newest first",
+            "sortOldest": "Oldest first",
+            "sortTitle": "Title A–Z"
+        },
+        "empty": {
+            "title": "No projects yet",
+            "description": "Projects published from the dashboard will appear here."
+        },
+        "noResults": {
+            "title": "No matching projects",
+            "description": "Try a different search term or clear the filters."
+        },
+        "card": {
+            "liveDemo": "Live demo",
+            "sourceCode": "Source code",
+            "viewDetails": "View details"
+        },
+        "status": {
+            "completed": "Completed",
+            "in_progress": "In progress",
+            "archived": "Archived"
+        },
+        "categories": {
+            "web_app": "Web app",
+            "ecommerce": "E-commerce",
+            "erp": "ERP",
+            "saas": "SaaS",
+            "api": "API",
+            "mobile": "Mobile",
+            "other": "Other"
+        },
+        "detail": {
+            "overview": "Overview",
+            "gallery": "Gallery",
+            "technologies": "Technologies",
+            "features": "Key features",
+            "challenges": "Challenges",
+            "solution": "Solution",
+            "results": "Results",
+            "backToProjects": "Back to projects",
+            "nextProject": "Next project",
+            "relatedProjects": "Related projects",
+            "shareProject": "Share this project",
+            "projectNotFound": "This project could not be found."
+        }
     },
-    "account": {
-      "title": "Account",
-      "subtitle": "Your sign-in details.",
-      "signedInAs": "Signed in as",
-      "role": "Role",
-      "changePassword": "Change password",
-      "passwordHint": "Run npm run db:reset-password in the project terminal to set a new password.",
-      "lastLogin": "Last sign-in"
+    "experience": {
+        "meta": {
+            "title": "Experience",
+            "description": "Roles and the products I worked on as a Full Stack Developer."
+        },
+        "eyebrow": "Career",
+        "title": "Experience",
+        "description": "A timeline of the teams I've been part of and the systems I've helped build.",
+        "present": "Present",
+        "highlights": "Highlights",
+        "technologies": "Technologies",
+        "empty": {
+            "title": "No experience entries yet",
+            "description": "Experience entries added from the dashboard will show up here."
+        }
     },
-    "empty": {
-      "title": "Nothing here yet",
-      "description": "Create your first record to see it here."
+    "education": {
+        "meta": {
+            "title": "Education",
+            "description": "University degrees and professional background."
+        },
+        "eyebrow": "Education",
+        "title": "Education & background",
+        "description": "Degrees and coursework that shaped how I approach engineering.",
+        "present": "Present",
+        "empty": {
+            "title": "No education entries yet",
+            "description": "Education entries added from the dashboard will show up here."
+        }
     },
-    "error": {
-      "title": "Something went wrong",
-      "description": "The dashboard hit an unexpected error. Try again, and check the server logs if it persists."
+    "services": {
+        "meta": {
+            "title": "Services",
+            "description": "Web development, API engineering, ERP systems and technical consulting."
+        },
+        "eyebrow": "Services",
+        "title": "What I can build for you",
+        "description": "Clear scopes, realistic estimates and code you can maintain afterwards.",
+        "includes": "What's included",
+        "discuss": "Discuss a project",
+        "empty": {
+            "title": "No services yet",
+            "description": "Services added from the dashboard will show up here."
+        }
     },
-    "status": {
-      "published": "Published",
-      "draft": "Draft",
-      "archived": "Archived",
-      "new": "New",
-      "read": "Read",
-      "replied": "Replied",
-      "spam": "Spam",
-      "unknown": "Unknown"
+    "testimonials": {
+        "meta": {
+            "title": "Testimonials",
+            "description": "What clients and teams say about working with me."
+        },
+        "eyebrow": "Testimonials",
+        "title": "Kind words from the people I worked with",
+        "description": "Feedback from client projects and long-running collaborations.",
+        "ratingLabel": "Rated {rating} out of 5",
+        "empty": {
+            "title": "No testimonials yet",
+            "description": "Testimonials published from the dashboard will appear here."
+        }
+    },
+    "contact": {
+        "meta": {
+            "title": "Contact",
+            "description": "Get in touch about a project, a role or a technical question."
+        },
+        "eyebrow": "Contact",
+        "title": "Let's talk",
+        "description": "Send a message and I'll get back to you as soon as I can.",
+        "detailsTitle": "Contact details",
+        "emailLabel": "Email",
+        "phoneLabel": "Phone",
+        "locationLabel": "Location",
+        "socialTitle": "Elsewhere",
+        "form": {
+            "title": "Send a message",
+            "name": "Name",
+            "namePlaceholder": "Jane Doe",
+            "email": "Email",
+            "emailPlaceholder": "jane@company.com",
+            "subject": "Subject",
+            "subjectPlaceholder": "What is this about?",
+            "message": "Message",
+            "messagePlaceholder": "Tell me a little about your project, timeline and budget…",
+            "submit": "Send message",
+            "submitting": "Sending…",
+            "privacyNote": "Your details are only used to reply to you. No newsletters, ever.",
+            "errors": {
+                "nameMin": "Please enter at least {min} characters.",
+                "email": "Please enter a valid email address.",
+                "subjectMin": "Please enter at least {min} characters.",
+                "messageMin": "Please enter at least {min} characters.",
+                "messageMax": "Please keep your message under {max} characters.",
+                "rateLimit": "Too many messages. Please try again in a few minutes.",
+                "generic": "We couldn't send your message. Please try again."
+            },
+            "success": {
+                "title": "Message sent",
+                "description": "Thanks for reaching out — I'll reply shortly.",
+                "sendAnother": "Send another message"
+            },
+            "failure": {
+                "title": "Message not sent",
+                "description": "Something went wrong on our side. Please try again."
+            }
+        }
+    },
+    "footer": {
+        "description": "Full Stack Developer building dependable web products with Laravel, React and Next.js.",
+        "navigation": "Navigation",
+        "connect": "Connect",
+        "contact": "Contact",
+        "copyright": "© {year} {name}. All rights reserved.",
+        "builtWith": "Built with Next.js, Tailwind CSS and Prisma.",
+        "backToTop": "Back to top",
+        "admin": "Admin"
+    },
+    "metadata": {
+        "home": {
+            "title": "Mohamed Gamal — Full Stack Developer",
+            "description": "Full Stack Developer with 2+ years of experience building production-grade systems using Laravel, React.js and Next.js."
+        },
+        "keywords": "Mohamed Gamal, Full Stack Developer, Laravel, React, Next.js, PHP, JavaScript, Portfolio"
+    },
+    "errors": {
+        "notFound": {
+            "code": "404",
+            "title": "Page not found",
+            "description": "The page you're looking for doesn't exist or has been moved."
+        },
+        "generic": {
+            "code": "Error",
+            "title": "Something went wrong",
+            "description": "An unexpected error occurred. Please try again in a moment."
+        },
+        "backHome": "Back to home"
+    },
+    "validation": {
+        "required": "This field is required.",
+        "email": "Enter a valid email address.",
+        "url": "Enter a valid URL.",
+        "minLength": "Must be at least {min} characters.",
+        "maxLength": "Must be at most {max} characters.",
+        "number": "Enter a valid number.",
+        "positive": "Enter a positive number.",
+        "invalid": "Invalid value."
+    },
+    "admin": {
+        "brand": {
+            "name": "Dashboard",
+            "short": "AD"
+        },
+        "login": {
+            "title": "Sign in to the dashboard",
+            "subtitle": "Manage every part of the portfolio from one place.",
+            "email": "Email address",
+            "emailPlaceholder": "you@example.com",
+            "password": "Password",
+            "passwordPlaceholder": "Your password",
+            "submit": "Sign in",
+            "submitting": "Signing in…",
+            "showPassword": "Show password",
+            "hidePassword": "Hide password",
+            "backToSite": "Back to the website",
+            "errors": {
+                "title": "Could not sign in",
+                "invalidCredentials": "That email and password combination is not correct.",
+                "rateLimited": "Too many attempts. Please wait 15 minutes and try again.",
+                "invalid": "Please check the highlighted fields."
+            },
+            "aside": {
+                "eyebrow": "Dashboard",
+                "headline": "Everything the portfolio says is editable from here.",
+                "body": "Projects, skills, experience, services, messages and media — one content source, no code changes."
+            }
+        },
+        "nav": {
+            "label": "Dashboard",
+            "dashboard": "Overview",
+            "content": "Content",
+            "hero": "Hero",
+            "about": "About",
+            "projects": "Projects",
+            "skills": "Skills",
+            "experience": "Experience",
+            "education": "Education",
+            "services": "Services",
+            "testimonials": "Testimonials",
+            "socialLinks": "Social Links",
+            "messages": "Messages",
+            "media": "Media",
+            "settings": "Settings",
+            "general": "General",
+            "seo": "SEO",
+            "language": "Language",
+            "appearance": "Appearance",
+            "account": "Account",
+            "signOut": "Sign out",
+            "viewSite": "View site",
+            "collapse": "Collapse sidebar",
+            "expand": "Expand sidebar"
+        },
+        "dashboard": {
+            "title": "Overview",
+            "subtitle": "A snapshot of what is published and what needs attention.",
+            "cards": {
+                "projects": "Projects",
+                "experience": "Experience",
+                "skills": "Skills",
+                "services": "Services",
+                "testimonials": "Testimonials",
+                "messages": "Messages",
+                "media": "Media files",
+                "education": "Education"
+            },
+            "published": "published",
+            "drafts": "drafts",
+            "unread": "unread",
+            "quickActions": "Quick actions",
+            "addProject": "New project",
+            "addMessageView": "Read messages",
+            "editSettings": "Edit settings",
+            "recentProjects": "Recently updated projects",
+            "recentMessages": "Latest messages",
+            "viewAll": "View all",
+            "noProjects": "No projects yet",
+            "noMessages": "No messages yet",
+            "setupTitle": "Finish setting up",
+            "setupDescription": "Your password is the only thing standing between the public and this dashboard.",
+            "setupCta": "Set a password",
+            "featured": "featured",
+            "active": "active",
+            "noProjectsDescription": "Published and draft projects will appear here.",
+            "noMessagesDescription": "Messages sent from the contact form will arrive here.",
+            "allRead": "All read"
+        },
+        "table": {
+            "title": "Title",
+            "name": "Name",
+            "company": "Company",
+            "institution": "Institution",
+            "category": "Category",
+            "status": "Status",
+            "featured": "Featured",
+            "sortOrder": "Order",
+            "level": "Level",
+            "rating": "Rating",
+            "platform": "Platform",
+            "url": "URL",
+            "email": "Email",
+            "subject": "Subject",
+            "date": "Date",
+            "actions": "Actions",
+            "from": "From",
+            "results": "results",
+            "showing": "Showing",
+            "of": "of",
+            "previous": "Previous page",
+            "next": "Next page",
+            "page": "Page",
+            "selectAll": "Select all"
+        },
+        "filters": {
+            "label": "Filters",
+            "all": "All",
+            "published": "Published",
+            "draft": "Draft",
+            "archived": "Archived",
+            "active": "Active",
+            "inactive": "Inactive",
+            "new": "New",
+            "read": "Read",
+            "replied": "Replied",
+            "spam": "Spam",
+            "search": "Search…"
+        },
+        "form": {
+            "new": "New",
+            "edit": "Edit",
+            "create": "Create",
+            "save": "Save changes",
+            "saving": "Saving…",
+            "saved": "Saved",
+            "basicInformation": "Basic information",
+            "englishContent": "English content",
+            "arabicContent": "Arabic content",
+            "projectDetails": "Project details",
+            "publishing": "Publishing",
+            "media": "Media",
+            "links": "Links",
+            "dates": "Dates",
+            "preview": "Preview",
+            "deleteConfirmTitle": "Delete this {entity}?",
+            "deleteConfirmDescription": "This cannot be undone.",
+            "fieldRequired": "This field is required",
+            "slugHint": "Used in the page URL. Leave empty to generate from the English title.",
+            "autoSlug": "Auto-generate",
+            "sortOrderHint": "Lower numbers appear first.",
+            "addItem": "Add item",
+            "removeItem": "Remove",
+            "notes": "Internal notes"
+        },
+        "messages": {
+            "title": "Messages",
+            "subtitle": "Enquiries sent from the public contact form.",
+            "empty": {
+                "title": "No messages",
+                "description": "Messages from the contact form land here."
+            },
+            "markRead": "Mark as read",
+            "markUnread": "Mark as unread",
+            "markReplied": "Mark as replied",
+            "markSpam": "Mark as spam",
+            "reply": "Reply",
+            "from": "From",
+            "received": "Received"
+        },
+        "media": {
+            "title": "Media library",
+            "subtitle": "Every uploaded image, ready to use anywhere in the portfolio.",
+            "upload": "Upload image",
+            "uploading": "Uploading…",
+            "dropHint": "Drop an image here, or click to choose a file",
+            "allowedTypes": "PNG, JPG, WEBP or SVG up to 5 MB",
+            "copyPath": "Copy path",
+            "copied": "Path copied",
+            "use": "Use this image",
+            "altText": "Alternative text",
+            "altHint": "Describe the image for screen readers and search engines.",
+            "empty": {
+                "title": "No media yet",
+                "description": "Uploaded images appear here."
+            },
+            "usedIn": "In use"
+        },
+        "settings": {
+            "title": "Settings",
+            "subtitle": "Content that appears across the whole site.",
+            "general": "General",
+            "profile": "Profile",
+            "contact": "Contact details",
+            "features": "Feature toggles",
+            "showServices": "Show the services section",
+            "showServicesHint": "Hide it on the home page and the services page.",
+            "showTestimonials": "Show the testimonials section",
+            "showTestimonialsHint": "Only displayed once a testimonial is marked as featured.",
+            "seo": "SEO",
+            "metaDescription": "Default meta description",
+            "ogImage": "Social share image",
+            "language": "Language",
+            "defaultLocale": "Default language",
+            "availableLocales": "Available languages",
+            "localeHint": "New visitors are sent to the default language. Adding a language requires adding a message catalogue.",
+            "appearance": "Appearance",
+            "theme": "Theme",
+            "themeHint": "Visitors can still override this in their browser.",
+            "dangerZone": "Danger zone",
+            "deleteEverything": "Delete all content",
+            "deleteEverythingHint": "Removes every project, skill, message and media record. Cannot be undone."
+        },
+        "account": {
+            "title": "Account",
+            "subtitle": "Your sign-in details.",
+            "signedInAs": "Signed in as",
+            "role": "Role",
+            "changePassword": "Change password",
+            "passwordHint": "Run npm run db:reset-password in the project terminal to set a new password.",
+            "lastLogin": "Last sign-in"
+        },
+        "empty": {
+            "title": "Nothing here yet",
+            "description": "Create your first record to see it here."
+        },
+        "error": {
+            "title": "Something went wrong",
+            "description": "The dashboard hit an unexpected error. Try again, and check the server logs if it persists."
+        },
+        "status": {
+            "published": "Published",
+            "draft": "Draft",
+            "archived": "Archived",
+            "new": "New",
+            "read": "Read",
+            "replied": "Replied",
+            "spam": "Spam",
+            "unknown": "Unknown"
+        },
+        "projects": {
+            "title": "Projects",
+            "new": "New project",
+            "edit": "Edit project",
+            "description": "Create, publish and organise the work shown on the public site.",
+            "searchPlaceholder": "Search title, slug or category…",
+            "viewOnSite": "View on site",
+            "fields": {
+                "identity": "Identity",
+                "content": "Content",
+                "seo": "Links and media",
+                "technologies": "Technologies",
+                "technologiesHint": "Press Enter or comma to add an entry.",
+                "slug": "Slug",
+                "category": "Category",
+                "thumbnail": "Thumbnail path",
+                "liveUrl": "Live URL",
+                "githubUrl": "Repository URL",
+                "featured": "Featured project",
+                "featuredHint": "Featured projects are pinned to the top of the home page.",
+                "status": "Status",
+                "sortOrder": "Sort order",
+                "titleEn": "Title (English)",
+                "titleAr": "Title (Arabic)",
+                "summaryEn": "Short description (English)",
+                "summaryAr": "Short description (Arabic)",
+                "longEn": "Full description (English)",
+                "longAr": "Full description (Arabic)",
+                "removeTechnology": "Remove technology"
+            },
+            "entity": "project"
+        },
+        "errors": {
+            "validationFailed": "Please fix the highlighted fields.",
+            "notFound": "That project no longer exists.",
+            "slugTaken": "Another project already uses this slug.",
+            "titleRequired": "A title is required.",
+            "titleMax": "The title is too long.",
+            "descriptionRequired": "A short description is required.",
+            "descriptionMax": "The description is too long.",
+            "longDescriptionMax": "The full description is too long.",
+            "slugMax": "The slug is too long.",
+            "categoryMax": "The category is too long.",
+            "technologyMax": "A technology name is too long.",
+            "url": "Enter a full http:// or https:// URL.",
+            "urlMax": "The URL is too long.",
+            "thumbnailMax": "The thumbnail path is too long.",
+            "sortOrderInt": "Use a whole number.",
+            "sortOrderMin": "Order cannot be negative.",
+            "sortOrderMax": "Use an order below 10000.",
+            "deleteFailed": "The project could not be deleted."
+        }
     }
-  }
 }

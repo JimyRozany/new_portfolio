@@ -1,15 +1,15 @@
 'use client';
 
 import { FolderOpen, Search, X } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-import { useMemo, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
+import { useId, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Chip } from '@/components/ui/chip';
 import { EmptyState } from '@/components/ui/empty-state';
-import { Input } from '@/components/ui/input';
+import { Input, Select } from '@/components/ui/input';
 import { useDebouncedValue } from '@/hooks/use-debounced-value';
 import { ProjectCard } from '@/components/public/project-card';
-import type { ProjectListItem } from '@/server/queries/portfolio';
+import type { ProjectListItem, ProjectSort } from '@/server/queries/portfolio';
 
 /**
  * The projects index: search box, category chips and the grid, as one unit.
@@ -25,6 +25,13 @@ import type { ProjectListItem } from '@/server/queries/portfolio';
  * The search box keeps the text the visitor is typing immediately and applies
  * the *debounced* value, so a fast typist does not re-filter the list on every
  * keystroke while the field still feels responsive.
+ *
+ * Sorting is client-side for the same reason filtering is: changing the order
+ * should reorder the grid in place, not refetch it. It mirrors the server's
+ * `PROJECT_ORDER_BY` so the grid looks the same on first paint as it does after
+ * a change. Sorting is deliberately *not* reset by "clear filters" and does not
+ * count as filtering: the order is a display preference, and a visitor who chose
+ * A-Z should not lose it by clearing their search.
  */
 export function ProjectBrowser({
   projects,
@@ -35,9 +42,12 @@ export function ProjectBrowser({
   categories: string[];
 }) {
   const t = useTranslations('projects');
+  const locale = useLocale();
+  const sortLabelId = useId();
 
   const [draft, setDraft] = useState('');
   const [category, setCategory] = useState<string | null>(null);
+  const [sort, setSort] = useState<ProjectSort>('newest');
   const query = useDebouncedValue(draft, 200);
 
   const filtered = useMemo(() => {
@@ -55,6 +65,25 @@ export function ProjectBrowser({
       return haystack.some((value) => value.includes(needle));
     });
   }, [category, projects, query]);
+
+  const sorted = useMemo(() => {
+    // A collator rather than `localeCompare` on a bare string: it handles Arabic
+    // letter ordering, ignores case and treats digit runs as numbers, so "Project
+    // 2" sorts before "Project 10".
+    const collator = new Intl.Collator(locale, { sensitivity: 'base', numeric: true });
+
+    // Copy first: `sort` mutates, and `projects` is a prop that must not change.
+    return [...filtered].sort((a, b) => {
+      // The owner's manual `sortOrder` outranks every automatic ordering, which
+      // is what makes the curated homepage order possible.
+      if (a.sortOrder !== b.sortOrder) return a.sortOrder - b.sortOrder;
+
+      if (sort === 'title') return collator.compare(a.title, b.title);
+
+      const byAge = a.createdAt.getTime() - b.createdAt.getTime();
+      return sort === 'oldest' ? byAge : -byAge;
+    });
+  }, [filtered, locale, sort]);
 
   // Nothing published at all is a different situation from "your filter matched
   // nothing", and each deserves its own explanation.
@@ -89,6 +118,25 @@ export function ProjectBrowser({
               className="ps-10"
             />
           </div>
+
+          {/* `aria-labelledby` rather than a visible label: the control's purpose
+              is obvious from its position next to the filter chips, and a
+              floating text label would be the only text on that row. The id is
+              generated so two browsers on one page cannot collide. */}
+          <Select
+            size="sm"
+            value={sort}
+            aria-labelledby={sortLabelId}
+            onChange={(event) => setSort(event.target.value as ProjectSort)}
+            className="sm:w-44"
+          >
+            <option value="newest">{t('filters.sortNewest')}</option>
+            <option value="oldest">{t('filters.sortOldest')}</option>
+            <option value="title">{t('filters.sortTitle')}</option>
+          </Select>
+          <span id={sortLabelId} className="sr-only">
+            {t('filters.sort')}
+          </span>
 
           {isFiltered ? (
             <Button type="button" variant="ghost" size="sm" onClick={clear}>
@@ -138,7 +186,7 @@ export function ProjectBrowser({
         />
       ) : (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((project, index) => (
+          {sorted.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}
