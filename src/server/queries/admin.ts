@@ -313,15 +313,26 @@ export const listAdminSocialLinks = cache(async () => {
 export type SkillListParams = {
   search?: string;
   categoryId?: number;
+  /** `undefined` for "any", which is distinct from `false`. */
+  featured?: boolean;
   page?: number;
   perPage?: number;
 };
 
 export const listAdminSkills = cache(async (params: SkillListParams = {}) => {
-  const { search = normalizeSearch(params.search), categoryId, page = 1, perPage = 20 } = params;
+  const {
+    search = normalizeSearch(params.search),
+    categoryId,
+    featured,
+    page = 1,
+    perPage = 20,
+  } = params;
 
   const where: Prisma.SkillWhereInput = {
     ...(categoryId ? { categoryId } : {}),
+    // Tri-state: `undefined` means "any", which is not the same as filtering on
+    // the column --- without this the `false` case could never be expressed.
+    ...(featured === undefined ? {} : { featured }),
     ...(search ? { name: { contains: search } } : {}),
   };
 

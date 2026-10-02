@@ -42,7 +42,9 @@
         "publish": "Publish",
         "unpublish": "Unpublish",
         "and": "and",
-        "or": "or"
+        "or": "or",
+        "nothingHere": "Nothing here yet",
+        "nothingHereDescription": "Records will appear here once they exist."
     },
     "nav": {
         "label": "Main navigation",
@@ -510,7 +512,12 @@
             "read": "Read",
             "replied": "Replied",
             "spam": "Spam",
-            "search": "Search…"
+            "search": "Search…",
+            "category": "Category",
+            "apply": "Apply",
+            "featured": "Featured",
+            "featuredOnly": "Featured only",
+            "notFeatured": "Not featured"
         },
         "form": {
             "new": "New",
@@ -534,9 +541,12 @@
             "slugHint": "Used in the page URL. Leave empty to generate from the English title.",
             "autoSlug": "Auto-generate",
             "sortOrderHint": "Lower numbers appear first.",
+            "sortOrder": "Order",
             "addItem": "Add item",
             "removeItem": "Remove",
-            "notes": "Internal notes"
+            "notes": "Internal notes",
+            "add": "Add",
+            "cancel": "Cancel"
         },
         "messages": {
             "title": "Messages",
@@ -673,7 +683,49 @@
             "sortOrderInt": "Use a whole number.",
             "sortOrderMin": "Order cannot be negative.",
             "sortOrderMax": "Use an order below 10000.",
-            "deleteFailed": "The project could not be deleted."
+            "deleteFailed": "The project could not be deleted.",
+            "nameRequired": "A name is required.",
+            "nameMax": "The name is too long.",
+            "iconMax": "The icon name is too long.",
+            "levelRange": "Use a level between 0 and 100.",
+            "notANumber": "Enter a number.",
+            "notAWholeNumber": "Use a whole number of percent.",
+            "notABoolean": "Expected true or false.",
+            "idInvalid": "Choose a valid category.",
+            "sortOrderRequired": "An order is required."
+        },
+        "skills": {
+            "title": "Skills",
+            "new": "New skill",
+            "edit": "Edit skill",
+            "description": "Technologies you work with, grouped by category. A skill name stays as you type it in both languages — \"Laravel\" is not translated.",
+            "searchPlaceholder": "Search skills…",
+            "entity": "skill",
+            "category": "Category",
+            "categoriesTitle": "Categories",
+            "categoriesDescription": "Group headings shown on the public page. Both languages are required.",
+            "categoriesEmpty": "No categories yet.",
+            "newCategory": "New category",
+            "categoryNameEn": "Name (English)",
+            "categoryNameAr": "Name (Arabic)",
+            "collapse": "Hide categories",
+            "expand": "Show categories",
+            "fields": {
+                "identity": "Skill",
+                "name": "Name",
+                "icon": "Icon",
+                "iconHint": "Optional Lucide icon name.",
+                "noCategory": "Uncategorised",
+                "level": "Level",
+                "levelDescription": "Self-assessed proficiency, shown as a percentage on the public page.",
+                "levelHint": "Leave off if you would rather not put a number on it.",
+                "noLevel": "No level",
+                "noLevelHint": "Shown as a dash instead of a progress bar.",
+                "sortOrder": "Order",
+                "featured": "Featured",
+                "featuredHint": "Featured skills appear on the home page.",
+                "category": "Category"
+            }
         }
     }
 }

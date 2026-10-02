@@ -42,7 +42,9 @@
         "publish": "نشر",
         "unpublish": "إلغاء النشر",
         "and": "و",
-        "or": "أو"
+        "or": "أو",
+        "nothingHere": "لا يوجد شيء بعد",
+        "nothingHereDescription": "ستظهر السجلات هنا عند إنشائها."
     },
     "nav": {
         "label": "القائمة الرئيسية",
@@ -510,7 +512,12 @@
             "read": "مقروء",
             "replied": "تم الرد",
             "spam": "مزعج",
-            "search": "بحث…"
+            "search": "بحث…",
+            "category": "التصنيف",
+            "apply": "تطبيق",
+            "featured": "مميزة",
+            "featuredOnly": "المميزة فقط",
+            "notFeatured": "غير مميزة"
         },
         "form": {
             "new": "إضافة",
@@ -534,9 +541,12 @@
             "slugHint": "يُستخدم في رابط الصفحة. اتركه فارغًا ليُولَّد من العنوان الإنجليزي.",
             "autoSlug": "توليد تلقائي",
             "sortOrderHint": "الأرقام الأصغر تظهر أولًا.",
+            "sortOrder": "الترتيب",
             "addItem": "إضافة عنصر",
             "removeItem": "حذف",
-            "notes": "ملاحظات داخلية"
+            "notes": "ملاحظات داخلية",
+            "add": "إضافة",
+            "cancel": "إلغاء"
         },
         "messages": {
             "title": "الرسائل",
@@ -673,7 +683,49 @@
             "sortOrderInt": "أدخل رقماً صحيحاً.",
             "sortOrderMin": "الترتيب لا يمكن أن يكون سالباً.",
             "sortOrderMax": "استخدم ترتيباً أقل من 10000.",
-            "deleteFailed": "تعذّر حذف المشروع."
+            "deleteFailed": "تعذّر حذف المشروع.",
+            "nameRequired": "الاسم مطلوب.",
+            "nameMax": "الاسم طويل جدًا.",
+            "iconMax": "اسم الأيقونة طويل جدًا.",
+            "levelRange": "استخدم مستوى بين 0 و100.",
+            "notANumber": "أدخل رقمًا.",
+            "notAWholeNumber": "استخدم نسبة مئوية صحيحة.",
+            "notABoolean": "القيمة يجب أن تكون true أو false.",
+            "idInvalid": "اختر تصنيفًا صالحًا.",
+            "sortOrderRequired": "الترتيب مطلوب."
+        },
+        "skills": {
+            "title": "المهارات",
+            "new": "مهارة جديدة",
+            "edit": "تعديل مهارة",
+            "description": "التقنيات التي تعمل بها، مجمّعة حسب التصنيف. اسم المهارة يبقى كما تكتبه في اللغتين — \"Laravel\" لا تُترجم.",
+            "searchPlaceholder": "ابحث في المهارات…",
+            "entity": "مهارة",
+            "category": "التصنيف",
+            "categoriesTitle": "التصنيفات",
+            "categoriesDescription": "عناوين المجموعات التي تظهر في الصفحة العامة. اللغتان مطلوبتان.",
+            "categoriesEmpty": "لا توجد تصنيفات بعد.",
+            "newCategory": "تصنيف جديد",
+            "categoryNameEn": "الاسم (بالإنجليزية)",
+            "categoryNameAr": "الاسم (بالعربية)",
+            "collapse": "إخفاء التصنيفات",
+            "expand": "عرض التصنيفات",
+            "fields": {
+                "identity": "المهارة",
+                "name": "الاسم",
+                "icon": "الأيقونة",
+                "iconHint": "اسم أيقونة Lucide اختياري.",
+                "noCategory": "بدون تصنيف",
+                "level": "المستوى",
+                "levelDescription": "مستوى إتقان تقديري، يُعرض كنسبة مئوية في الصفحة العامة.",
+                "levelHint": "اتركه فارغًا إذا كنت تفضّل عدم وضع رقم.",
+                "noLevel": "بدون مستوى",
+                "noLevelHint": "يُعرض كشرطة بدل شريط التقدم.",
+                "sortOrder": "الترتيب",
+                "featured": "مميزة",
+                "featuredHint": "المهارات المميزة تظهر في الصفحة الرئيسية.",
+                "category": "التصنيف"
+            }
         }
     }
 }
