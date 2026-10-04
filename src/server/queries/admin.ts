@@ -366,6 +366,21 @@ export const getAdminSkill = cache(async (id: number) =>
   prisma.skill.findUnique({ where: { id } }),
 );
 
+/**
+ * Single rows for the timeline edit forms.
+ *
+ * Returned raw rather than localised: the form edits the `_en` / `_ar` columns
+ * side by side, so folding them into one `title` here would hide half of what the
+ * form has to show. `localize` belongs to the public query layer.
+ */
+export const getAdminExperience = cache(async (id: number) =>
+  prisma.experience.findUnique({ where: { id } }),
+);
+
+export const getAdminEducation = cache(async (id: number) =>
+  prisma.education.findUnique({ where: { id } }),
+);
+
 // ---------------------------------------------------------------------------
 // Contact messages
 // ---------------------------------------------------------------------------
