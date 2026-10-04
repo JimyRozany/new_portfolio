@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Reveal, Stagger, StaggerItem } from '@/components/motion/reveal';
+import { getSkillIcon } from '@/config/skill-icons';
 import type { SkillWithCategory } from '@/server/queries/portfolio';
 
 /**
@@ -45,28 +46,46 @@ export function SkillGrid({ skills }: { skills: SkillWithCategory[] }) {
             className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
             delay={categoryIndex * 0.04}
           >
-            {items.map((skill) => (
-              <StaggerItem key={skill.id}>
-                <Card className="h-full gap-3 p-5">
-                  <div className="flex items-baseline justify-between gap-3">
-                    <span className="text-body font-medium">{skill.name}</span>
-                    {/* `dir="ltr"` + tabular figures: a percentage must not be
-                        reordered or jitter when the page is in Arabic. */}
-                    {skill.level !== null ? (
-                      <span dir="ltr" className="text-caption text-subtle-foreground tabular-nums">
-                        {skill.level}%
-                      </span>
-                    ) : null}
-                  </div>
+            {items.map((skill) => {
+              const Icon = getSkillIcon(skill.icon);
 
-                  {/* A skill with no self-assessed level shows the name only,
-                      rather than a bar that implies a false zero. */}
-                  {skill.level !== null ? (
-                    <Progress value={skill.level} label={`${skill.name} — ${t('levelLabel')}`} />
-                  ) : null}
-                </Card>
-              </StaggerItem>
-            ))}
+              return (
+                <StaggerItem key={skill.id}>
+                  <Card className="h-full gap-3 p-5">
+                    <div className="flex items-center gap-3">
+                      {/* A skill with no icon is normal, so the row keeps its
+                          shape rather than reserving a gap for a missing glyph. */}
+                      {Icon ? (
+                        <Icon
+                          aria-hidden="true"
+                          className="text-accent-foreground size-5 shrink-0"
+                        />
+                      ) : null}
+
+                      <div className="flex min-w-0 flex-1 items-baseline justify-between gap-3">
+                        <span className="text-body font-medium">{skill.name}</span>
+                        {/* `dir="ltr"` + tabular figures: a percentage must not be
+                            reordered or jitter when the page is in Arabic. */}
+                        {skill.level !== null ? (
+                          <span
+                            dir="ltr"
+                            className="text-caption text-subtle-foreground tabular-nums"
+                          >
+                            {skill.level}%
+                          </span>
+                        ) : null}
+                      </div>
+                    </div>
+
+                    {/* A skill with no self-assessed level shows the name only,
+                        rather than a bar that implies a false zero. */}
+                    {skill.level !== null ? (
+                      <Progress value={skill.level} label={`${skill.name} — ${t('levelLabel')}`} />
+                    ) : null}
+                  </Card>
+                </StaggerItem>
+              );
+            })}
           </Stagger>
         </section>
       ))}

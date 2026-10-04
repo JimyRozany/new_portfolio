@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { SKILL_ICON_KEYS } from '@/config/skill-icons';
 
 /**
  * Validation for the admin skill form and the skill-category form.
@@ -17,7 +18,6 @@ import { z } from 'zod';
 /** Mirrors the Prisma column widths, so an over-long value fails as a form error. */
 export const SKILL_LIMITS = {
   name: 120,
-  icon: 120,
   categoryName: 120,
 } as const;
 
@@ -109,17 +109,27 @@ const requiredText = (max: number) =>
     .or(z.undefined().transform(() => ''))
     .pipe(z.string().trim().min(1, 'nameRequired').max(max, 'nameMax'));
 
-const optionalText = (max: number) =>
-  z
-    .string()
-    .trim()
-    .max(max, 'iconMax')
-    .optional()
-    .transform((value) => (value ? value : undefined));
+/**
+ * The icon is a key from the shared vocabulary, so it is checked against that
+ * list rather than accepted as free text. A free-text field invites a typo that
+ * renders as nothing at all, silently; a closed set turns the same mistake into
+ * an error the owner can see and fix.
+ *
+ * Blank stays valid --- an icon is decoration, and a skill without one is a
+ * normal record, not a mistake.
+ */
+const iconKey = z
+  .string()
+  .trim()
+  // No length cap is needed: the closed set below already bounds the value to
+  // the longest key in the map, so a `max` here could only ever reject a string
+  // that the `refine` was going to reject anyway.
+  .refine((value) => value === '' || SKILL_ICON_KEYS.includes(value), 'iconUnknown')
+  .transform((value) => (value === '' ? undefined : value));
 
 export const skillSchema = z.object({
   name: requiredText(SKILL_LIMITS.name),
-  icon: optionalText(SKILL_LIMITS.icon),
+  icon: iconKey,
   /**
    * `''` is what an untouched `<select>` posts, and a missing field is what a
    * category-less skill looks like, so both have to mean "uncategorised".

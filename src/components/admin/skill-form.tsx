@@ -1,12 +1,13 @@
 'use client';
 
-import { useActionState, useEffect, useState } from 'react';
+import { createElement, useActionState, useEffect, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { FieldError, FieldHint, Input, Label, Select } from '@/components/ui/input';
 import { Switch } from '@/components/ui/switch';
+import { SKILL_ICON_GROUPS, getSkillIcon } from '@/config/skill-icons';
 import type { SkillFormState } from '@/app/admin/(dashboard)/skills/actions';
 
 /**
@@ -34,6 +35,11 @@ export function SkillForm({
   const tFields = useTranslations('admin.skills.fields');
   const tForm = useTranslations('admin.form');
   const tErrors = useTranslations('admin.errors');
+  const tIcons = useTranslations('admin.skills.icons');
+  const iconLabels = SKILL_ICON_GROUPS.map((group) => ({
+    label: tIcons(group.label as Parameters<typeof tIcons>[0]),
+    keys: group.keys,
+  }));
 
   const [state, formAction] = useActionState(action, null);
 
@@ -104,12 +110,10 @@ export function SkillForm({
                 hint={tFields('iconHint')}
               >
                 {(props) => (
-                  <Input
+                  <IconPicker
                     {...props}
-                    dir="ltr"
                     defaultValue={value('icon', defaults?.icon)}
-                    placeholder="server"
-                    maxLength={120}
+                    labels={iconLabels}
                   />
                 )}
               </Field>
@@ -320,6 +324,80 @@ function Field({
           {tErrors(error as Parameters<typeof tErrors>[0])}
         </FieldError>
       ) : null}
+    </div>
+  );
+}
+
+/**
+ * Icon chooser: a native `<select>` plus a live preview of the current choice.
+ *
+ * A free-text field for an icon name is a field the owner has to know the answer
+ * to --- so it ends up blank, and a blank icon column is the same as no icons at
+ * all. Listing the vocabulary turns the guess into a choice, and the preview
+ * shows the actual glyph rather than the key, because "database" means little
+ * until you can see it.
+ *
+ * Grouped with `<optgroup>` so a skill that is neither `Wrench` nor `Globe` is
+ * still findable. The value is mirrored into state because the preview needs to
+ * follow the selection; the state is seeded from `defaultValue` once and never
+ * re-seeded, so the owner's choice survives a re-render from a failed submit.
+ */
+function IconPicker({
+  id,
+  name,
+  defaultValue,
+  labels,
+  ...rest
+}: {
+  id: string;
+  name: string;
+  'aria-invalid': boolean;
+  'aria-describedby'?: string;
+  defaultValue: string;
+  labels: { label: string; keys: string[] }[];
+}) {
+  const tIcons = useTranslations('admin.skills.icons');
+  const [preview, setPreview] = useState(defaultValue);
+
+  // Resolved into an element rather than a component reference: `Chosen` would
+  // otherwise be a value created during render, which the React Compiler lint
+  // rule rejects even though the lookup itself is a plain map read.
+  const Chosen = getSkillIcon(preview);
+
+  return (
+    <div className="flex items-center gap-3">
+      <Select
+        id={id}
+        name={name}
+        value={preview}
+        onChange={(event) => setPreview(event.target.value)}
+        aria-invalid={rest['aria-invalid']}
+        aria-describedby={rest['aria-describedby']}
+      >
+        <option value="">{tIcons('none')}</option>
+        {labels.map((group) => (
+          <optgroup key={group.label} label={group.label}>
+            {group.keys.map((key) => (
+              <option key={key} value={key}>
+                {tIcons(key as Parameters<typeof tIcons>[0])}
+              </option>
+            ))}
+          </optgroup>
+        ))}
+      </Select>
+
+      {/* `aria-hidden` because the option text already names the icon; the
+          preview is for the eye, and announcing it twice would be noise. */}
+      <span
+        aria-hidden="true"
+        className="border-border bg-surface-2 text-muted-foreground grid size-10 shrink-0 place-items-center rounded-lg border"
+      >
+        {Chosen ? (
+          createElement(Chosen, { className: 'size-5' })
+        ) : (
+          <span className="text-caption">—</span>
+        )}
+      </span>
     </div>
   );
 }
