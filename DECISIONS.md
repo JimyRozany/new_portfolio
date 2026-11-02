@@ -1,0 +1,17 @@
+# DECISIONS
+- Next 15 (stable `middleware.ts`), Tailwind 4, plain CSS variables for theming; no animation lib yet (CSS + canvas keep JS small).
+- Fonts via @fontsource (no Google Fonts fetch at build).
+- Locale in path (`/ar`, `/en`), Arabic default.
+- Static content in `src/lib/content.ts` is the fallback; DB becomes the source once seeded.
+- Auth deliberately minimal (own signed cookie) to avoid heavy deps — not yet written.
+- Limitation: no screenshots/links invented; project images are placeholders.
+- Admin lists with few fields (skills, services) use inline per-row forms; larger entities (projects, experience) get a dedicated edit page.
+- Settings: an empty value means "use the built-in CV text" for that language (data.ts falls back per field).
+- Contact form stores messages in DB only; no email sending yet. Honeypot + in-memory throttle as best-effort spam control.
+- Never iterate FormData/URLSearchParams with .entries() (tsconfig lib has no dom.iterable); read fields explicitly.
+- Redesign: no animation library added (none installed); reveal/parallax/marquee use IntersectionObserver + CSS + one canvas (home page ~115 kB first-load JS).
+- Fonts via self-hosted @fontsource-variable: Bricolage Grotesque, Readex Pro (has an Arabic subset), JetBrains Mono. Alexandria removed.
+- Arabic styled separately: no negative letter-spacing (breaks joins), taller line-height, accent-coloured second name word, logical CSS properties so layouts mirror correctly.
+- Light theme is its own palette (warm paper, ink-dot stars, accent #c2410c for AA contrast), not an inverted dark theme.
+- Project previews are abstract wireframes labelled "Interface concept" so they never pass as real screenshots.
+- Don't name icon classes .sun/.moon: .sun is the hero star (caused a bug). Theme icons are .ico-sun/.ico-moon.
