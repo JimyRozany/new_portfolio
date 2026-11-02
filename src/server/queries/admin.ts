@@ -381,6 +381,18 @@ export const getAdminEducation = cache(async (id: number) =>
   prisma.education.findUnique({ where: { id } }),
 );
 
+export const getAdminService = cache(async (id: number) =>
+  prisma.service.findUnique({ where: { id } }),
+);
+
+export const getAdminTestimonial = cache(async (id: number) =>
+  prisma.testimonial.findUnique({ where: { id } }),
+);
+
+export const getAdminSocialLink = cache(async (id: number) =>
+  prisma.socialLink.findUnique({ where: { id } }),
+);
+
 // ---------------------------------------------------------------------------
 // Contact messages
 // ---------------------------------------------------------------------------
